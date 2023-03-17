@@ -2,15 +2,17 @@
   "openapi": "3.0.1",
   "info": {
     "version": "1.0.0",
-    "title": "Pet-support"
+    "title": "Pet-support API"
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [{ "url": "http://localhost:3000" }],
   "tags": [
     {
-      "name": "Auth",
-      "description": "Authorization endpoints"
+      "name": "Auth"
+    },
+    {
+      "name": "Pets"
     }
   ],
 
@@ -18,7 +20,7 @@
     "/auth/register": {
       "post": {
         "tags": ["Auth"],
-        "summary": "Registration new user",
+        "summary": "",
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "requestBody": {
@@ -59,7 +61,7 @@
     "/auth/login": {
       "post": {
         "tags": ["Auth"],
-        "summary": "Login user",
+        "summary": "",
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "requestBody": {
