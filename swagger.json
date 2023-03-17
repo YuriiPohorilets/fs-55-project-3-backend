@@ -26,7 +26,7 @@
   ],
 
   "paths": {
-    "api/auth/register": {
+    "/api/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "",
@@ -50,7 +50,7 @@
         }
       }
     },
-    "api/auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "",
@@ -74,7 +74,7 @@
         }
       }
     },
-    "api/auth/logout": {
+    "/api/auth/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "",
@@ -98,7 +98,7 @@
         }
       }
     },
-    "api/auth/update": {
+    "/api/auth/update": {
       "patch": {
         "tags": ["Auth"],
         "summary": "",
@@ -122,7 +122,7 @@
         }
       }
     },
-    "api/pets": {
+    "/api/pets": {
       "post": {
         "tags": ["Pets"],
         "summary": "",
@@ -146,7 +146,7 @@
         }
       }
     },
-    "api/pets/{petId}": {
+    "/api/pets/{petId}": {
       "delete": {
         "tags": ["Pets"],
         "summary": "",
@@ -170,7 +170,7 @@
         }
       }
     },
-    "api/notices/{category}": {
+    "/api/notices/{category}": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -194,7 +194,7 @@
         }
       }
     },
-    "api/notices/{noticeId}": {
+    "/api/notices/{noticeId}": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -218,7 +218,7 @@
         }
       }
     },
-    "api/notices/{userId}/favorites": {
+    "/api/notices/{userId}/favorites": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -242,7 +242,7 @@
         }
       }
     },
-    "api/notices/{userId}": {
+    "/api/notices/{userId}": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -266,7 +266,7 @@
         }
       }
     },
-    "api/notices/{notiveId}": {
+    "/api/notices/{notiveId}": {
       "delete": {
         "tags": ["Notices"],
         "summary": "",
@@ -290,7 +290,7 @@
         }
       }
     },
-    "api/notices/{noticeId}/favorite": {
+    "/api/notices/{noticeId}/favorite": {
       "patch": {
         "tags": ["Notices"],
         "summary": "",
@@ -314,7 +314,7 @@
         }
       }
     },
-    "api/notices": {
+    "/api/notices": {
       "post": {
         "tags": ["Notices"],
         "summary": "",
@@ -338,7 +338,7 @@
         }
       }
     },
-    "api/news": {
+    "/api/news": {
       "get": {
         "tags": ["News"],
         "summary": "",
@@ -362,7 +362,7 @@
         }
       }
     },
-    "api/services": {
+    "/api/services": {
       "get": {
         "tags": ["Services"],
         "summary": "",

@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { news: ctrl } = require('../../controllers');
 
 //================ GET ALL NEWS ================
-router.get('/', async (req, res) => {
-  res.json({ message: 'Get all news' });
-});
+router.get('/', ctrl.getNews);
 
 module.exports = router;
