@@ -12,4 +12,4 @@ const newsSchema = new Schema({
 
 const News = model('news', newsSchema);
 
-module.exports = { News };
+module.exports = News;

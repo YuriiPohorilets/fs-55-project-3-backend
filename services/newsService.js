@@ -5,6 +5,6 @@ const getAllNews = async () => {
   return news;
 };
 
-module.export = {
+module.exports = {
   getAllNews,
 };
