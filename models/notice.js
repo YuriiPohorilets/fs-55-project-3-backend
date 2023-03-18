@@ -26,10 +26,10 @@ const noticeSchema = new Schema(
       type: String,
       required: [true, 'The sex field is required'],
     },
-    petAvatarURL: {
-      type: String,
-      required: [true, 'Pet avatar field is required'],
-    },
+    // petAvatarURL: {
+    //   type: String,
+    //   required: [true, 'Pet avatar field is required'],
+    // },
     category: {
       type: String,
       enum: ['sell', 'in good hands', 'lost/found'],
@@ -38,10 +38,10 @@ const noticeSchema = new Schema(
     price: {
       type: String,
     },
-    email: {
-      type: String,
-      required: [true, 'Email field is required'],
-    },
+    // email: {
+    //   type: String,
+    //   required: [true, 'Email field is required'],
+    // },
     phone: {
       type: String,
       required: [true, 'Phone field is required'],
@@ -49,11 +49,11 @@ const noticeSchema = new Schema(
     comments: {
       type: String,
     },
-    owner: {
-      type: SchemaTypes.ObjectId,
-      ref: 'user',
-      required: true,
-    },
+    // owner: {
+    //   type: SchemaTypes.ObjectId,
+    //   ref: 'user',
+    //   required: true,
+    // },
   },
   { versionKey: false, timestamps: true }
 );
