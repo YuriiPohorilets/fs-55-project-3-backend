@@ -28,11 +28,11 @@ const userSchema = new Schema(
     },
     region: {
       type: String,
-      required: [true, 'region is required'],
+      // required: [true, 'region is required'],
     },
     avatarURL: {
       type: String,
-      required: [true, 'URL is required'],
+      // required: [true, 'URL is required'],
     },
     token: {
       type: String,
