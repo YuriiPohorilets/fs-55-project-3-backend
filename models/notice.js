@@ -58,6 +58,6 @@ const noticeSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Notice = model('notice', noticeSchema);
+const Notice = model('notices', noticeSchema);
 
 module.exports = Notice;
