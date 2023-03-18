@@ -33,6 +33,7 @@ const noticeSchema = new Schema(
     category: {
       type: String,
       enum: ['sell', 'in good hands', 'lost/found'],
+      default: 'sell',
     },
     price: {
       type: String,
