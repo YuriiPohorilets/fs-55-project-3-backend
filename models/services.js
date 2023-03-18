@@ -33,4 +33,4 @@ const servicesSchema = new Schema({
 
 const Services = model('services', servicesSchema);
 
-module.exports = { Services };
+module.exports = Services;

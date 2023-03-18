@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Pet-support API"
   },
   "consumes": ["application/json", "multipart/form-data"],
@@ -68,6 +68,7 @@
         }
       }
     },
+
     "/api/auth/login": {
       "post": {
         "tags": ["Auth"],
@@ -107,22 +108,17 @@
         }
       }
     },
+
     "/api/auth/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "",
         "parameters": [],
-        "security": [],
+        "security": [{ "Bearer": [] }],
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": ""
-                }
-              }
-            }
+          "204": {
+            "description": "Success",
+            "content": {}
           },
           "404": {
             "description": "Not found",
@@ -131,6 +127,7 @@
         }
       }
     },
+
     "/api/auth/update": {
       "patch": {
         "tags": ["Auth"],
@@ -155,6 +152,7 @@
         }
       }
     },
+
     "/api/pets": {
       "post": {
         "tags": ["Pets"],
@@ -179,6 +177,7 @@
         }
       }
     },
+
     "/api/pets/{petId}": {
       "delete": {
         "tags": ["Pets"],
@@ -203,6 +202,7 @@
         }
       }
     },
+
     "/api/notices/{category}": {
       "get": {
         "tags": ["Notices"],
@@ -227,6 +227,7 @@
         }
       }
     },
+
     "/api/notices/{noticeId}": {
       "get": {
         "tags": ["Notices"],
@@ -251,6 +252,7 @@
         }
       }
     },
+
     "/api/notices/{userId}/favorites": {
       "get": {
         "tags": ["Notices"],
@@ -275,6 +277,7 @@
         }
       }
     },
+
     "/api/notices/{userId}": {
       "get": {
         "tags": ["Notices"],
@@ -299,6 +302,7 @@
         }
       }
     },
+
     "/api/notices/{notiveId}": {
       "delete": {
         "tags": ["Notices"],
@@ -323,6 +327,7 @@
         }
       }
     },
+
     "/api/notices/{noticeId}/favorite": {
       "patch": {
         "tags": ["Notices"],
@@ -347,6 +352,7 @@
         }
       }
     },
+
     "/api/notices": {
       "post": {
         "tags": ["Notices"],
@@ -371,6 +377,7 @@
         }
       }
     },
+
     "/api/news": {
       "get": {
         "tags": ["News"],
@@ -395,6 +402,7 @@
         }
       }
     },
+
     "/api/services": {
       "get": {
         "tags": ["Services"],
@@ -453,20 +461,6 @@
           }
         }
       },
-      "LoginRequest": {
-        "type": "object",
-        "required": ["email", "password", "name", "confirmPassword", "city", "phone"],
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "password": {
-            "type": "string",
-            "example": "myNewPassword-123"
-          }
-        }
-      },
 
       "SignupResponse": {
         "type": "object",
@@ -497,6 +491,22 @@
           }
         }
       },
+
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password", "name", "confirmPassword", "city", "phone"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "example": "myNewPassword-123"
+          }
+        }
+      },
+
       "LoginResponse": {
         "type": "object",
         "properties": {
@@ -542,6 +552,7 @@
           }
         }
       },
+
       "NewsResponse": {
         "type": "array",
         "items": {
