@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const { emailPattern, namePattern, passwordPattern, phonePattern } = require('./patterns');
+const { emailPattern, namePattern, passwordPattern, phonePattern } = require('./index');
 
 const joiSignupSchema = Joi.object({
   email: Joi.string().pattern(emailPattern).min(10).max(40).required(),

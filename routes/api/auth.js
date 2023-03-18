@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { joiSignupSchema, joiLoginSchema } = require("../../models/user");
+const { joiSignupSchema, joiLoginSchema } = require("../../schemas/index");
 const { validation, ctrlWrapper } = require("../../middleware");
-const {auth: ctrl} = require("../../controllers");
+const {auth: ctrl} = require("../../controllers/index");
 
 //================ REGISTER USER ================
 router.post('/signup', validation(joiSignupSchema), ctrlWrapper(ctrl.signup));
