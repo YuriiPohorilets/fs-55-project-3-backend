@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 // const { SECRET_KEY } = process.env;
-const { User } = require("../../models/index");
+const  User  = require("../../models/index");
 
 const signup = async (req, res, next) => {
   const { name, email, password } = req.body;
