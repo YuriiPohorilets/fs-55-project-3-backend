@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { services: ctrl } = require('../../controllers');
 
 //================ GET ALL SERVICES ================
-router.get('/', async (req, res) => {
-  res.json({ message: '' });
-});
+router.get('/', ctrl.getServices);
 
 module.exports = router;

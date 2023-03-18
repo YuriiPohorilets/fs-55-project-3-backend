@@ -4,7 +4,10 @@ const newsSchema = new Schema({
   title: String,
   url: String,
   description: String,
-  date: String,
+  date: {
+    type: String,
+    default: null,
+  },
 });
 
 const News = model('news', newsSchema);
