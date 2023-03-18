@@ -1,24 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
+const { joiSignupSchema, joiLoginSchema } = require("../../models/user");
+const { validation, ctrlWrapper } = require("../../middleware");
+const {auth: ctrl} = require("../../controllers");
+
 //================ REGISTER USER ================
-router.post('/register', async (req, res) => {
-  res.json({ message: '' });
-});
+router.post('/signup', validation(joiSignupSchema), ctrlWrapper(ctrl.signup));
 
 //================ LOGIN USER ================
-router.post('/login', async (req, res) => {
-  res.json({ message: '' });
-});
+router.post('/login', validation(joiLoginSchema), ctrlWrapper(ctrl.login));
 
 //================ LOGOUT USER ================
-router.post('/logout', async (req, res) => {
-  res.json({ message: '' });
-});
+router.post('/logout', ctrlWrapper(ctrl.login));
 
 //================ UPDATE USER ================
-router.patch('/update', async (req, res) => {
-  res.json({ message: '' });
-});
+// router.patch('/update', async (req, res) => {
+//   res.json({ message: '' });
+// });
 
 module.exports = router;

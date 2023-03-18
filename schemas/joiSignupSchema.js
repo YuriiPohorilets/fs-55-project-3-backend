@@ -7,7 +7,7 @@ const joiSignupSchema = Joi.object({
   password: Joi.string().pattern(passwordPattern).required(),
   name: Joi.string().pattern(namePattern).required(),
   phone: Joi.string().pattern(phonePattern).required(),
-  token: Joi.string(),
+  // token: Joi.string(),
 });
 
 module.exports = joiSignupSchema;
