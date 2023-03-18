@@ -1,5 +1,5 @@
 const { News } = require('./news');
-const  User  = require('./user');
+const { User}  = require('./user');
 
 module.exports = {
   News,

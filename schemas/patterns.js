@@ -4,8 +4,8 @@ const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ,.! ]+$/;
 const phonePattern = /^[+]{380}[0-9]{12}$/;
 
 module.exports = {
-  emailPattern,
-  passwordPattern,
-  namePattern,
-  phonePattern,
+  // emailPattern,
+  // passwordPattern,
+  // namePattern,
+  // phonePattern,
 };
