@@ -8,12 +8,18 @@ const findUserByEmail = async ({ email }) => {
 const registerNewUser = async ({ email, password, name }) => {
   return await User.create({ name, email, password });
 };
+
 const loginUser = async (_id, token) => {
   await User.findByIdAndUpdate(_id, { token });
+};
+
+const logoutUser = async _id => {
+  await User.findByIdAndUpdate(_id, { token: null });
 };
 
 module.exports = {
   findUserByEmail,
   registerNewUser,
   loginUser,
+  logoutUser,
 };

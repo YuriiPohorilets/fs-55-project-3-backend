@@ -10,7 +10,7 @@ router.post('/signup', ctrl.signup);
 router.post('/login', ctrl.login );
 
 //================ LOGOUT USER ================
-router.post('/logout', ctrl.login);
+router.get('/logout', ctrl.logout);
 
 //================ UPDATE USER ================
 // router.patch('/update', async (req, res) => {

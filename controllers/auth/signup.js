@@ -8,13 +8,8 @@ const signup = asyncHandler(async (req, res) => {
   if (error) {
     return res.status(400).json({ message: 'Missing fields' });
   }
-  const { email, password, name } = req.body;
-  // const user = await User.findOne({ email });
 
-  // const findUserByEmail = async ({ email }) => {
-  //   const user = await User.findOne({ email });
-  //   return user;
-  // };
+  const { email, password, name } = req.body;
   const user = await findUserByEmail({ email });
 
   if (user) {
@@ -31,4 +26,4 @@ const signup = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { signup };
+module.exports =  signup;
