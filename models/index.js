@@ -1,7 +1,9 @@
 const { News } = require('./news');
-const User  = require('./user');
+const { Services } = require('./services');
+const User = require('./user');
 
 module.exports = {
   News,
+  Services,
   User,
 };
