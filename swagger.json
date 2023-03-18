@@ -6,7 +6,10 @@
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3000/" }],
+  "servers": [
+    { "url": "https://pet-support-api.onrender.com/" },
+    { "url": "http://localhost:3000/" }
+  ],
   "tags": [
     {
       "name": "Auth"
@@ -26,25 +29,40 @@
   ],
 
   "paths": {
-    "/api/auth/register": {
+    "/api/auth/signup": {
       "post": {
         "tags": ["Auth"],
         "summary": "",
         "parameters": [],
         "security": [],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          }
+        },
         "responses": {
-          "200": {
-            "description": "",
+          "201": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/SignupResponse"
                 }
               }
             }
           },
-          "404": {
-            "description": "Not found",
+          "400": {
+            "description": "Missing fields",
+            "content": {}
+          },
+          "409": {
+            "description": "User alredy exist",
             "content": {}
           }
         }
@@ -56,19 +74,34 @@
         "summary": "",
         "parameters": [],
         "security": [],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               }
             }
           },
-          "404": {
-            "description": "Not found",
+          "400": {
+            "description": "Missing fields",
+            "content": {}
+          },
+          "401": {
+            "description": "Email or password is wrong",
             "content": {}
           }
         }
@@ -346,7 +379,7 @@
         "security": [],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -370,7 +403,7 @@
         "security": [],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -390,28 +423,134 @@
 
   "components": {
     "schemas": {
-      "RegistrationRequest": {
+      "SignupRequest": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": ["email", "password", "name", "confirmPassword", "city", "phone"],
         "properties": {
           "email": {
             "type": "string",
-            "description": "User's email",
             "format": "email"
           },
           "password": {
             "type": "string",
-            "description": "User's password",
-            "example": "qwerty123"
+            "example": "myNewPassword-123"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "example": "myNewPassword-123"
+          },
+          "name": {
+            "type": "string",
+            "example": "Avocado"
+          },
+          "phone": {
+            "type": "string",
+            "example": "380998887766"
+          },
+          "city": {
+            "type": "string",
+            "example": "Kyiv"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password", "name", "confirmPassword", "city", "phone"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "example": "myNewPassword-123"
           }
         }
       },
 
+      "SignupResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "Avocado"
+          },
+          "phone": {
+            "type": "string",
+            "example": "380998887766"
+          },
+          "city": {
+            "type": "string",
+            "example": "Kyiv"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "00.00.0000"
+          },
+          "avatarURL": {
+            "type": "string",
+            "example": ""
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "64147eb23c83845366a969e3"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "Avocado"
+          },
+          "phone": {
+            "type": "string",
+            "example": "380998887766"
+          },
+          "city": {
+            "type": "string",
+            "example": "Kyiv"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "00.00.0000"
+          },
+          "avatarURL": {
+            "type": "string",
+            "example": "https://storage.example/image/"
+          },
+          "token": {
+            "type": "string",
+            "example": "3fhj3kdKdefsdfke3d"
+          },
+          "favotite": {
+            "type": "string",
+            "example": "[{}]"
+          },
+          "notices": {
+            "type": "string",
+            "example": "[{}]"
+          }
+        }
+      },
       "NewsResponse": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
+            "_id": {
+              "type": "string",
+              "example": "64147eb23c83845366a969e3"
+            },
             "title": {
               "type": "string",
               "example": "Veterinarian Day"
@@ -451,7 +590,7 @@
             },
             "imageUrl": {
               "type": "string",
-              "example": "https://storage.example/images/"
+              "example": "https://storage.example/image/"
             },
             "address": {
               "type": "string",

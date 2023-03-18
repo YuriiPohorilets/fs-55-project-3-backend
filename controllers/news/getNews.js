@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler');
-const { News } = require('../../models');
+const { getAllNews } = require('../../services/newsService');
 
 const getNews = asyncHandler(async (req, res) => {
-  const news = await News.find({});
+  const news = await getAllNews();
 
   res.status(200).json(news);
 });
