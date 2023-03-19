@@ -7,7 +7,7 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https://pet-support-api.onrender.com/" },
+    { "url": "https://tiny-hare-cowboy-hat.cyclic.app/" },
     { "url": "http://localhost:3000/" }
   ],
   "tags": [
