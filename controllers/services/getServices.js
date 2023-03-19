@@ -4,7 +4,11 @@ const { getAllServices } = require('../../services/servicesService');
 const getServices = asyncHandler(async (req, res) => {
   const services = await getAllServices();
 
-  res.status(200).json(services);
+  res.json({
+    status: 'success',
+    code: 200,
+    services: [...services],
+  });
 });
 
 module.exports = getServices;
