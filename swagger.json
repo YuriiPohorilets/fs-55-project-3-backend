@@ -110,7 +110,7 @@
     },
 
     "/api/auth/logout": {
-      "post": {
+      "get": {
         "tags": ["Auth"],
         "summary": "",
         "parameters": [],
@@ -134,13 +134,24 @@
         "summary": "",
         "parameters": [],
         "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/UpdateResponse"
                 }
               }
             }
@@ -159,16 +170,31 @@
         "summary": "",
         "parameters": [],
         "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetsRequest"
+              }
+            }
+          }
+        },
         "responses": {
-          "200": {
-            "description": "",
+          "201": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/PetsResponse"
                 }
               }
             }
+          },
+          "400": {
+            "description": "Missing fields",
+            "content": {}
           },
           "404": {
             "description": "Not found",
@@ -549,6 +575,128 @@
           "notices": {
             "type": "string",
             "example": "[{}]"
+          }
+        }
+      },
+
+      "UpdateRequest": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "New name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "01.01.2000"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+380998887766"
+          },
+          "city": {
+            "type": "string",
+            "example": "Kyiv"
+          }
+        }
+      },
+
+      "UpdateResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "64147eb23c83845366a969e3"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "example": "Avocado"
+          },
+          "phone": {
+            "type": "string",
+            "example": "380998887766"
+          },
+          "city": {
+            "type": "string",
+            "example": "Kyiv"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "00.00.0000"
+          },
+          "avatarURL": {
+            "type": "string",
+            "example": "https://storage.example/image/"
+          },
+          "token": {
+            "type": "string",
+            "example": "3fhj3kdKdefsdfke3d"
+          },
+          "favotite": {
+            "type": "string",
+            "example": "[{}]"
+          },
+          "notices": {
+            "type": "string",
+            "example": "[{}]"
+          }
+        }
+      },
+
+      "PetsRequest": {
+        "type": "object",
+        "required": ["name", "birthday", "breed", "comment"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Stepan"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "01.01.2020"
+          },
+          "breed": {
+            "type": "string",
+            "example": "French Bulldog"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Some test about your pet"
+          }
+        }
+      },
+
+      "PetsResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "64147eb23c83845366a969e3"
+          },
+          "name": {
+            "type": "string",
+            "example": "Stepan"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "01.01.2020"
+          },
+          "breed": {
+            "type": "string",
+            "example": "French Bulldog"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Some test about your pet"
           }
         }
       },

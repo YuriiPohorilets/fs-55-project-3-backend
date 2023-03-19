@@ -13,7 +13,7 @@ const cratePet = asyncHandler(async (req, res) => {
 
   const newPet = await addPet(pet);
 
-  res.status(200).json(newPet);
+  res.status(201).json(newPet);
 });
 
 module.exports = cratePet;
