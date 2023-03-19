@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const {auth: ctrl} = require("../../controllers");
-const {authVerifyToken}  = require('../../middleware');
+const {auth}  = require('../../middleware');
 
 //================ REGISTER USER ================
 router.post('/signup', ctrl.signup);
@@ -11,9 +11,9 @@ router.post('/signup', ctrl.signup);
 router.post('/login', ctrl.login );
 
 //================ LOGOUT USER ================
-router.get('/logout', authVerifyToken, ctrl.logout);
+router.get('/logout', auth, ctrl.logout);
 
 //================ UPDATE USER ================
-router.patch('/update', authVerifyToken, ctrl.updateUser);
+router.patch('/update', auth, ctrl.updateUser);
 
 module.exports = router;

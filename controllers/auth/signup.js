@@ -3,11 +3,7 @@ const bcrypt = require('bcrypt');
 const { joiSignupSchema } = require('../../schemas');
 const asyncHandler = require('express-async-handler');
 
-const {
-  registerNewUser,
-  findUserByEmail,
-} = require('../../services/authService');
-
+const { registerNewUser, findUserByEmail } = require('../../services/authService');
 
 const signup = asyncHandler(async (req, res) => {
   const { error } = joiSignupSchema.validate(req.body);
@@ -24,19 +20,22 @@ const signup = asyncHandler(async (req, res) => {
 
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
-  
   const newUser = await registerNewUser({
     ...req.body,
     password: hashPassword,
   });
 
-
   res.status(201).json({
     status: 'success',
     code: 201,
-    user: {
+    result: {
       name: newUser.name,
       email: newUser.email,
+      phone: newUser.phone,
+      city: newUser.city,
+      birthday: newUser.birthday,
+      avatarURL: newUser.avatarURL,
+      favorite: newUser.favorite,
     },
   });
 });

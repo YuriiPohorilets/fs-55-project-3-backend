@@ -1,6 +1,10 @@
 const { User } = require('../../models');
+const asyncHandler = require('express-async-handler');
 
-const updateUser = async (req, res) => {
+
+
+const updateUser = asyncHandler(async (req, res) => {
+  
   const { _id } = req.user;
 
   const { name, email, birthday, phone, city } = req.body;
@@ -18,16 +22,19 @@ const updateUser = async (req, res) => {
       new: true,
     }
   );
-
   res.json({
-    user: {
+    status: 'success',
+    code: 200,
+    result: {
       name: updateInfo.name,
       email: updateInfo.email,
-      birthday: updateInfo.birthday,
       phone: updateInfo.phone,
       city: updateInfo.city,
+      birthday: updateInfo.birthday,
+      avatarURL: updateInfo.avatarURL,
+      favorite: updateInfo.favorite,
     },
   });
-};
+});
 
 module.exports = updateUser;

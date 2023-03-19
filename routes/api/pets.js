@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { pets: ctrl } = require('../../controllers');
-const { authVerifyToken } = require('../../middleware');
+const { auth } = require('../../middleware');
 
 //================ CREATE NEW PET ================
-router.post('/', authVerifyToken, ctrl.createPet);
+router.post('/', auth, ctrl.createPet);
 
 //================ DELETE PET BY ID ================
-router.delete('/:petId', authVerifyToken, ctrl.deletePet);
+router.delete('/:petId', auth, ctrl.deletePet);
 
 module.exports = router;
