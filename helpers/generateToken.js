@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
+const SECRET_KEY="KLJLKDFVDF98jkfgdgg8d78D";
 
 const generateToken = ({ _id }) => {
-  const { SECRET_KEY } = process.env;
+  // const { SECRET_KEY } = process.env;
   const payload = {
     id: _id,
   };
@@ -9,4 +10,4 @@ const generateToken = ({ _id }) => {
   return token;
 };
 
-module.exports = { generateToken };
+module.exports = {generateToken };

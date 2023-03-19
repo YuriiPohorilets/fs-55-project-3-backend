@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-const { SECRET_KEY } = process.env;
+// const { SECRET_KEY } = process.env;
+const SECRET_KEY="KLJLKDFVDF98jkfgdgg8d78D";
 
-const verifyToken = async (req, res, next) => {
+const authVerifyToken = async (req, res, next) => {
   const { authorization = '' } = req.headers;
   //  разделили bearer and token
   const [bearer, token] = authorization.split(' ');
@@ -31,4 +32,4 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken };
+module.exports =  {authVerifyToken} ;
