@@ -12,4 +12,10 @@ const getAll = async req => {
   return notices;
 };
 
-module.exports = { createNotice, getAll };
+const getOne = async req => {
+    const {noticeId} = req.params;
+    const notice = await Notice.findById(noticeId);
+    return notice;
+}
+
+module.exports = { createNotice, getAll, getOne };

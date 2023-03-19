@@ -2,8 +2,8 @@ const asyncHandler = require('express-async-handler');
 const { createNotice } = require('../../services/noticesService');
 
 const addNotice = asyncHandler(async (req, res) => {
+    console.log(req, '|||||||||||||||||RF|||||||||||||');
     const createdNotice = await createNotice(req);
-
     if(!createdNotice){
         res.status(400).json({
             code: 400,
