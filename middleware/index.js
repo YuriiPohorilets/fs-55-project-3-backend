@@ -1,3 +1,3 @@
 const { authVerifyToken } = require('../middleware/authVerifyToken');
 
-module.exports = {authVerifyToken};
+module.exports = { authVerifyToken };

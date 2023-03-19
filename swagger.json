@@ -62,7 +62,7 @@
             "content": {}
           },
           "409": {
-            "description": "User alredy exist",
+            "description": "Alredy exist",
             "content": {}
           }
         }
@@ -199,6 +199,10 @@
           "404": {
             "description": "Not found",
             "content": {}
+          },
+          "409": {
+            "description": "Alredy exist",
+            "content": {}
           }
         }
       }
@@ -229,7 +233,7 @@
       }
     },
 
-    "/api/notices/{category}": {
+    "/api/notices/categories/{category}": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -254,7 +258,7 @@
       }
     },
 
-    "/api/notices/{noticeId}": {
+    "/api/notices/notice/{noticeId}": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -329,7 +333,7 @@
       }
     },
 
-    "/api/notices/{notiveId}": {
+    "/api/notices/{noticeId}": {
       "delete": {
         "tags": ["Notices"],
         "summary": "",
@@ -731,57 +735,74 @@
       },
 
       "ServicesResponse": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "title": {
-              "type": "string",
-              "example": "Animal shelter"
-            },
-            "url": {
-              "type": "string",
-              "example": "https://www.example.com.ua/"
-            },
-            "addressUrl": {
-              "type": "string",
-              "example": "https://www.example/maps/"
-            },
-            "imageUrl": {
-              "type": "string",
-              "example": "https://storage.example/image/"
-            },
-            "address": {
-              "type": "string",
-              "example": "Fedorivka, Kyiv Oblast, Ukraine, 07372"
-            },
-            "workDays": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "isOpen": {
-                    "type": "boolean",
-                    "example": "true"
-                  },
-                  "from": {
-                    "type": "string",
-                    "example": "09:00"
-                  },
-                  "to": {
-                    "type": "string",
-                    "example": "20:00"
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "200"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "64147eb23c83845366a969e3"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Animal shelter"
+                },
+                "url": {
+                  "type": "string",
+                  "example": "https://www.example.com.ua/"
+                },
+                "addressUrl": {
+                  "type": "string",
+                  "example": "https://www.example/maps/"
+                },
+                "imageUrl": {
+                  "type": "string",
+                  "example": "https://storage.example/image/"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "Fedorivka, Kyiv Oblast, Ukraine, 07372"
+                },
+                "workDays": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "isOpen": {
+                        "type": "boolean",
+                        "example": "true"
+                      },
+                      "from": {
+                        "type": "string",
+                        "example": "09:00"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "20:00"
+                      }
+                    }
                   }
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+380931934069"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "hello@happypaw.ua"
                 }
               }
-            },
-            "phone": {
-              "type": "string",
-              "example": "+380931934069"
-            },
-            "email": {
-              "type": "string",
-              "example": "hello@happypaw.ua"
             }
           }
         }
