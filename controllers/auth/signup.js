@@ -1,20 +1,21 @@
 const bcrypt = require('bcrypt');
+
 const { joiSignupSchema } = require('../../schemas');
 const asyncHandler = require('express-async-handler');
-const { registerNewUser, findUserByEmail } = require('../../services/authService');
+
+const {
+  registerNewUser,
+  findUserByEmail,
+} = require('../../services/authService');
+
 
 const signup = asyncHandler(async (req, res) => {
   const { error } = joiSignupSchema.validate(req.body);
   if (error) {
     return res.status(400).json({ message: 'Missing fields' });
   }
-  const { email, password, name } = req.body;
-  // const user = await User.findOne({ email });
 
-  // const findUserByEmail = async ({ email }) => {
-  //   const user = await User.findOne({ email });
-  //   return user;
-  // };
+  const { email, password } = req.body;
   const user = await findUserByEmail({ email });
 
   if (user) {
@@ -22,13 +23,22 @@ const signup = asyncHandler(async (req, res) => {
   }
 
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-  const result = await registerNewUser({ name, email, password: hashPassword });
+
+  
+  const newUser = await registerNewUser({
+    ...req.body,
+    password: hashPassword,
+  });
+
 
   res.status(201).json({
     status: 'success',
     code: 201,
-    user: { name: result.name, email: result.email},
+    user: {
+      name: newUser.name,
+      email: newUser.email,
+    },
   });
 });
 
-module.exports = { signup };
+module.exports = signup;

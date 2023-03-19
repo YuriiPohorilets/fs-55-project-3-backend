@@ -1,8 +1,14 @@
 const bcrypt = require('bcrypt');
+const { joiLoginSchema } = require('../../schemas');
+const asyncHandler = require('express-async-handler');
 const { findUserByEmail, loginUser } = require('../../services/authService');
 const { generateToken } = require('../../helpers/generateToken');
 
-const login = async (req, res) => {
+const login = asyncHandler (async (req, res) => {
+  const { error } = joiLoginSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: 'Missing fields' });
+  }
   const { email, password } = req.body;
   const user = await findUserByEmail({ email });
 
@@ -24,6 +30,6 @@ const login = async (req, res) => {
     token: token,
     user: { email: user.email, name: user.name },
   });
-};
+});
 
 module.exports = login;

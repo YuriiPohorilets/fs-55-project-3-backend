@@ -22,16 +22,19 @@ const userSchema = new Schema(
     },
     phone: {
       type: String,
+      // required: true,
     },
     city: {
       type: String,
-    },
-    region: {
-      type: String,
       // required: [true, 'region is required'],
     },
+    // region: {
+    //   type: String,
+    //   required: [true, 'region is required'],
+    // },
     avatarURL: {
       type: String,
+      // required: true,
       // required: [true, 'URL is required'],
     },
     token: {

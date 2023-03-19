@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const {auth: ctrl} = require("../../controllers/index");
+const {auth: ctrl} = require("../../controllers");
+const {authVerifyToken}  = require('../../middleware');
 
 //================ REGISTER USER ================
 router.post('/signup', ctrl.signup);
@@ -10,11 +11,9 @@ router.post('/signup', ctrl.signup);
 router.post('/login', ctrl.login );
 
 //================ LOGOUT USER ================
-router.post('/logout', ctrl.login);
+router.get('/logout', authVerifyToken, ctrl.logout);
 
 //================ UPDATE USER ================
-// router.patch('/update', async (req, res) => {
-//   res.json({ message: '' });
-// });
+router.patch('/update', authVerifyToken, ctrl.updateUser);
 
 module.exports = router;
