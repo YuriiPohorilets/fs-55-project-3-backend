@@ -307,7 +307,14 @@
       "get": {
         "tags": ["Notices"],
         "summary": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "type": "string",
+            "required": true
+          }
+        ],
         "security": [],
         "responses": {
           "200": {
@@ -315,7 +322,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/NoticeResponse"
                 }
               }
             }
@@ -332,7 +339,14 @@
       "get": {
         "tags": ["Notices"],
         "summary": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "type": "string",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -340,10 +354,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/FavoriteNoticesResponse"
                 }
               }
             }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
           },
           "404": {
             "description": "Not found",
@@ -357,7 +375,14 @@
       "get": {
         "tags": ["Notices"],
         "summary": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "type": "string",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -365,10 +390,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/UserNoticesResponse"
                 }
               }
             }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
           },
           "404": {
             "description": "Not found",
@@ -382,7 +411,14 @@
       "delete": {
         "tags": ["Notices"],
         "summary": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "type": "string",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -390,10 +426,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/DeleteNoticeResponse"
                 }
               }
             }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
           },
           "404": {
             "description": "Not found",
@@ -407,7 +447,14 @@
       "patch": {
         "tags": ["Notices"],
         "summary": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "type": "string",
+            "required": true
+          }
+        ],
         "security": [],
         "responses": {
           "200": {
@@ -415,7 +462,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": ""
+                  "$ref": "#/components/schemas/AddFavoriteResponse"
                 }
               }
             }
@@ -975,6 +1022,264 @@
       },
 
       "CategoriesResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "200"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "64147eb23c83845366a969e3"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Big dog"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Bady"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "01.01.2019"
+                },
+                "breed": {
+                  "type": "string",
+                  "example": "St. Bernard"
+                },
+                "place": {
+                  "type": "string",
+                  "example": "Lutsk"
+                },
+                "sex": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "lost-found"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "150$"
+                },
+                "comments": {
+                  "type": "string",
+                  "example": "String whith 8 symbol min"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+380998880000"
+                },
+                "owner": {
+                  "type": "string",
+                  "example": "64147eb23c83845366a969e3"
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "FavoriteNoticesResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "200"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "64147eb23c83845366a969e3"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Big dog"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Bady"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "01.01.2019"
+                },
+                "breed": {
+                  "type": "string",
+                  "example": "St. Bernard"
+                },
+                "place": {
+                  "type": "string",
+                  "example": "Lutsk"
+                },
+                "sex": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "lost-found"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "150$"
+                },
+                "comments": {
+                  "type": "string",
+                  "example": "String whith 8 symbol min"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+380998880000"
+                },
+                "owner": {
+                  "type": "string",
+                  "example": "64147eb23c83845366a969e3"
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "UserNoticesResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "200"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "64147eb23c83845366a969e3"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Big dog"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Bady"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "01.01.2019"
+                },
+                "breed": {
+                  "type": "string",
+                  "example": "St. Bernard"
+                },
+                "place": {
+                  "type": "string",
+                  "example": "Lutsk"
+                },
+                "sex": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "lost-found"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "150$"
+                },
+                "comments": {
+                  "type": "string",
+                  "example": "String whith 8 symbol min"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+380998880000"
+                },
+                "owner": {
+                  "type": "string",
+                  "example": "64147eb23c83845366a969e3"
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "DeleteNoticeResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "201"
+          },
+          "message": {
+            "type": "string",
+            "example": "Notice deleted"
+          }
+        }
+      },
+
+      "AddFavoriteResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "201"
+          },
+          "message": {
+            "type": "string",
+            "example": "Notice added to favorite"
+          }
+        }
+      },
+
+      "NoticeResponse": {
         "type": "object",
         "properties": {
           "status": {
