@@ -65,6 +65,16 @@ const getNoticesByUser = async req => {
   return notices;
 };
 
+const removeUserNotice = async req => {
+  const { _id } = req.user;
+  const { noticeId } = req.params;
+  const deletedNotice = await Notice.findOneAndRemove({ _id: noticeId, owner: _id });
+
+  if (!deletedNotice) return null;
+
+  return true;
+};
+
 module.exports = {
   createNotice,
   getAll,
@@ -72,4 +82,5 @@ module.exports = {
   addDeleteToFavorite,
   getFavoriteNotices,
   getNoticesByUser,
+  removeUserNotice,
 };

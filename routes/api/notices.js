@@ -16,9 +16,7 @@ router.get('/user/favorites', auth, ctrl.getFavorite);
 router.get('/user', auth, ctrl.getByUser);
 
 //================ DELETE USER NOTICE ================
-// router.delete('/:noticeId', async (req, res) => {
-//   res.json({ message: '' });
-// });
+router.delete('/user/:noticeId', auth, ctrl.removeNotice);
 
 //================ ADD/DELETE NOTICE TO FAVORITE ================
 router.patch('/:noticeId', auth, ctrl.favoriteNotices);
