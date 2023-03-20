@@ -18,7 +18,7 @@ router.get('/user/favorites', authVerifyToken, ctrl.getFavorite);
 // });
 
 //================ DELETE USER NOTICE ================
-// router.delete('/:notiveId', async (req, res) => {
+// router.delete('/:noticeId', async (req, res) => {
 //   res.json({ message: '' });
 // });
 

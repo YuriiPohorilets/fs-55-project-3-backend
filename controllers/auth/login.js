@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const { findUserByEmail, loginUser } = require('../../services/authService');
 const { generateToken } = require('../../helpers/generateToken');
 
-const login = asyncHandler (async (req, res) => {
+const login = asyncHandler(async (req, res) => {
   const { error } = joiLoginSchema.validate(req.body);
   if (error) {
     return res.status(400).json({ message: 'Missing fields' });
@@ -20,7 +20,7 @@ const login = asyncHandler (async (req, res) => {
   if (!isPasswordValid) {
     return res.status(401).json({ message: `Email or password is wrong` });
   }
-  
+
   const token = await generateToken(user);
   await loginUser(user._id, token);
 
@@ -28,7 +28,15 @@ const login = asyncHandler (async (req, res) => {
     status: 'success',
     code: 200,
     token: token,
-    user: { email: user.email, name: user.name },
+    result: {
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      city: user.city,
+      birthday: user.birthday,
+      avatarURL: user.avatarURL,
+      favorite: user.favorite,
+    },
   });
 });
 

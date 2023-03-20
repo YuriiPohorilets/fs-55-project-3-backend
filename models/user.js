@@ -16,26 +16,22 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Name is required'],
     },
+    phone: {
+      type: String,
+      default: null,
+      // required: [true, 'Phone is required'],
+    },
+    city: {
+      type: String,
+      default: null,
+      // required: [true, 'Location is required'],
+    },
     birthday: {
       type: String,
       default: '00.00.0000',
     },
-    phone: {
-      type: String,
-      // required: true,
-    },
-    city: {
-      type: String,
-      // required: [true, 'region is required'],
-    },
-    // region: {
-    //   type: String,
-    //   required: [true, 'region is required'],
-    // },
     avatarURL: {
       type: String,
-      // required: true,
-      // required: [true, 'URL is required'],
     },
     token: {
       type: String,
