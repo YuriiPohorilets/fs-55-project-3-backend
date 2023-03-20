@@ -40,11 +40,11 @@ const noticeSchema = new Schema(
     },
     email: {
       type: String,
-      // required: [true, 'Email field is required'],
+      required: [true, 'Email field is required'],
     },
     phone: {
       type: String,
-      // required: [true, 'Phone field is required'],
+      required: [true, 'Phone field is required'],
     },
     comments: {
       type: String,
@@ -52,7 +52,7 @@ const noticeSchema = new Schema(
     owner: {
       type: SchemaTypes.ObjectId,
       ref: 'user',
-      // required: true,
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }

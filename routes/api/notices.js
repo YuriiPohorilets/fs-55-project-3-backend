@@ -28,6 +28,6 @@ router.get('/:noticeId', ctrl.getById);
 router.patch('/:noticeId/:favorite', authVerifyToken, ctrl.favoriteNotices);
 
 //================ CREATE NOTICE ================
-router.post('/', ctrl.addNotice);
+router.post('/', authVerifyToken, ctrl.addNotice);
 
 module.exports = router;
