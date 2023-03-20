@@ -10,6 +10,7 @@ const cratePet = asyncHandler(async (req, res) => {
 
   const { _id } = req.user;
   const { name, birthday, breed, comment } = req.body;
+  const { path: photo } = req.file;
 
   // const pet = await findPetByName(name);
 
@@ -17,12 +18,12 @@ const cratePet = asyncHandler(async (req, res) => {
   //   return res.status(409).json({ message: `Pet with name: ${name} already exist ` });
   // }
 
-  const newPet = await addPet({ name, birthday, breed, comment }, _id);
+  const newPet = await addPet({ name, birthday, breed, comment, photo }, _id);
 
   res.json({
     status: 'success',
     code: 201,
-    data: newPet,
+    result: newPet,
   });
 });
 
