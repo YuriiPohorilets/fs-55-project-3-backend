@@ -8,7 +8,7 @@ const joiSignupSchema = Joi.object({
   name: Joi.string().pattern(namePattern).required(),
   phone: Joi.string().pattern(phonePattern).allow(null, ''),
   city: Joi.string().pattern(locationPattern).allow(null, ''),
-  birthday: Joi.date().format(['DD.MM.YYYY']).utc(),
+  birthday: Joi.date().format(['DD.MM.YYYY']).utc().allow(null, ''),
 });
 
 module.exports = joiSignupSchema;
