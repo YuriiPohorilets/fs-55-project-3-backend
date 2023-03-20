@@ -28,10 +28,10 @@ const addDeleteToFavorite = async req => {
   // const notice = await Notice.findOne({ _id: noticeId, owner: user.id });
 
   if (!user) return null;
-  
+
   const isNotice = user.favorite.find(el => el.toString() === noticeId);
 
-    if (isNotice) {
+  if (isNotice) {
     const arr = user.favorite.filter(notice => notice.toString() !== noticeId);
     user.favorite = arr;
     await user.save();
@@ -58,4 +58,18 @@ const getFavoriteNotices = async req => {
   return favoriteNotices;
 };
 
-module.exports = { createNotice, getAll, getOne, addDeleteToFavorite, getFavoriteNotices };
+const getNoticesByUser = async req => {
+  const { _id } = req.user;
+  const notices = await Notice.find({ owner: _id });
+
+  return notices;
+};
+
+module.exports = {
+  createNotice,
+  getAll,
+  getOne,
+  addDeleteToFavorite,
+  getFavoriteNotices,
+  getNoticesByUser,
+};
