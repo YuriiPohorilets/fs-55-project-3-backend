@@ -1,6 +1,6 @@
-const { notices } = require('../controllers');
+// const { notices } = require('../controllers');
 const { Notice, User } = require('../models');
-const { id } = require('../schemas/joiSignupSchema');
+// const { id } = require('../schemas/joiSignupSchema');
 
 const createNotice = async req => {
   const { _id, email, phone } = req.user;

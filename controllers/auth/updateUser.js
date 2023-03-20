@@ -1,12 +1,8 @@
 const { User } = require('../../models');
 const asyncHandler = require('express-async-handler');
 
-
-
 const updateUser = asyncHandler(async (req, res) => {
-  
   const { _id } = req.user;
-
   const { name, email, birthday, phone, city } = req.body;
 
   const updateInfo = await User.findOneAndUpdate(

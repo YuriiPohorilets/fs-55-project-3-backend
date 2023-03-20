@@ -3,7 +3,7 @@ const emailPattern = /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.(
 const passwordPattern = /^[^ ]{7,32}$/;
 const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ,.! ]+$/;
 const phonePattern = /^[+]{1}[0-9]{12}$/;
-const locationPattern =  /^[a-zA-Zа-яіїєА-ЯІЇЄ]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ]+$/;
+const locationPattern = /^[a-zA-Zа-яіїєА-ЯІЇЄ]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ]+$/;
 
 //================ PETS ================
 const notNumNotSpecChar = /[^0-9$&+,:;=?@#|'<>.^*()%!-]/;
