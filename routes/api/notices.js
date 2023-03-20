@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { notices: ctrl } = require('../../controllers');
-const { authVerifyToken } = require('../../middleware');
+const { auth } = require('../../middleware');
 
 //================ GET NOTICES BY CATEGORY ================
 router.get('/categories/:category', ctrl.getByCategory);
@@ -10,7 +10,7 @@ router.get('/categories/:category', ctrl.getByCategory);
 router.get('/:noticeId', ctrl.getById);
 
 //================ GET USER FAVORITE NOTICES ================
-router.get('/user/favorites', authVerifyToken, ctrl.getFavorite);
+router.get('/user/favorites', auth, ctrl.getFavorite);
 
 //================ GET USER NOTICES ================
 // router.get('/:userId', async (req, res) => {
@@ -23,9 +23,9 @@ router.get('/user/favorites', authVerifyToken, ctrl.getFavorite);
 // });
 
 //================ ADD/DELETE NOTICE TO FAVORITE ================
-router.patch('/:noticeId/:favorite', authVerifyToken, ctrl.favoriteNotices);
+router.patch('/:noticeId/:favorite', auth, ctrl.favoriteNotices);
 
 //================ CREATE NOTICE ================
-router.post('/', authVerifyToken, ctrl.addNotice);
+router.post('/', auth, ctrl.addNotice);
 
 module.exports = router;
