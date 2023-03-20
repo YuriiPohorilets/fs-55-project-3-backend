@@ -10,9 +10,7 @@ router.get('/categories/:category', ctrl.getByCategory);
 router.get('/:noticeId', ctrl.getById);
 
 //================ GET USER FAVORITE NOTICES ================
-// router.get('/:userId/favorites', async (req, res) => {
-//   res.json({ message: '' });
-// });
+router.get('/user/favorites', authVerifyToken, ctrl.getFavorite);
 
 //================ GET USER NOTICES ================
 // router.get('/:userId', async (req, res) => {
