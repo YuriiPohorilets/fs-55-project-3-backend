@@ -22,26 +22,20 @@ const getOne = async req => {
 };
 
 const addDeleteToFavorite = async req => {
-  const { noticeId, favorite } = req.params;
+  const { noticeId } = req.params;
   const { _id } = req.user;
   const user = await User.findById(_id);
-  const notice = await Notice.findOne({ _id: noticeId, owner: user.id });
+  // const notice = await Notice.findOne({ _id: noticeId, owner: user.id });
 
-  const checkNotice = (array, id) => {
-    return (noticeIdInArr = array.find(el => el.toString() === id));
-  };
+  if (!user) return null;
+  
+  const isNotice = user.favorite.find(el => el.toString() === noticeId);
 
-  if (!user || !notice) return null;
-
-  if (favorite === 'false') {
-    const isNotice = checkNotice(user.favorite, noticeId);
-    if (!isNotice) return null;
+    if (isNotice) {
     const arr = user.favorite.filter(notice => notice.toString() !== noticeId);
     user.favorite = arr;
     await user.save();
-  } else if (favorite === 'true') {
-    const isNotice = checkNotice(user.favorite, noticeId);
-    if (isNotice) return null;
+  } else if (!isNotice) {
     user.favorite.push(noticeId);
     await user.save();
     // await User.findOneAndUpdate({_id}, {$push: {favorite: [noticeId]}});

@@ -23,7 +23,7 @@ router.get('/user/favorites', auth, ctrl.getFavorite);
 // });
 
 //================ ADD/DELETE NOTICE TO FAVORITE ================
-router.patch('/:noticeId/:favorite', auth, ctrl.favoriteNotices);
+router.patch('/:noticeId', auth, ctrl.favoriteNotices);
 
 //================ CREATE NOTICE ================
 router.post('/', auth, ctrl.addNotice);
