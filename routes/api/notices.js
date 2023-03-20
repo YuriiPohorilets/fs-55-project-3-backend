@@ -19,7 +19,7 @@ router.get('/:noticeId', ctrl.getById);
 // });
 
 //================ DELETE USER NOTICE ================
-// router.delete('/:notiveId', async (req, res) => {
+// router.delete('/:noticeId', async (req, res) => {
 //   res.json({ message: '' });
 // });
 
