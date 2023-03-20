@@ -23,7 +23,7 @@ const cratePet = asyncHandler(async (req, res) => {
   res.json({
     status: 'success',
     code: 201,
-    data: newPet,
+    result: newPet,
   });
 });
 

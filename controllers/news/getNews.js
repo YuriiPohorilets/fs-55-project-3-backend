@@ -7,7 +7,7 @@ const getNews = asyncHandler(async (req, res) => {
   res.json({
     status: 'success',
     code: 200,
-    data: [...news],
+    result: [...news],
   });
 });
 
