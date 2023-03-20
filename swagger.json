@@ -5,7 +5,7 @@
     "title": "Pet-support API"
   },
   "consumes": ["application/json", "multipart/form-data"],
-  "produces": ["application/json"],
+  "produces": ["application/json", "multipart/form-data"],
   "servers": [
     { "url": "https://tiny-hare-cowboy-hat.cyclic.app/" },
     { "url": "http://localhost:3000/" }
@@ -131,7 +131,7 @@
             }
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -175,7 +175,7 @@
             "content": {}
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -219,7 +219,7 @@
             "content": {}
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -259,7 +259,7 @@
             }
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -360,7 +360,7 @@
             }
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -396,7 +396,7 @@
             }
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -432,7 +432,7 @@
             }
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -508,7 +508,7 @@
             "content": {}
           },
           "401": {
-            "description": "Not authorized",
+            "description": "Unauthorized",
             "content": {}
           },
           "404": {
@@ -879,6 +879,10 @@
                 "owner": {
                   "type": "string",
                   "example": "64147eb23c83845366a969e3"
+                },
+                "photo": {
+                  "type": "string",
+                  "example": "https://res.cloudinary.com/dixdf3mkj/image/upload/v1679328996/zzakcqen1ko3q32ykg4r.png"
                 }
               }
             }
