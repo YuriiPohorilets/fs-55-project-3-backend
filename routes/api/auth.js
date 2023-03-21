@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { auth: ctrl } = require('../../controllers');
-const { auth } = require('../../middleware');
+const { auth, upload } = require('../../middleware');
 
 //================ REGISTER USER ================
 router.post('/signup', ctrl.signup);
@@ -14,6 +14,6 @@ router.post('/login', ctrl.login);
 router.get('/logout', auth, ctrl.logout);
 
 //================ UPDATE USER ================
-router.patch('/update', auth, ctrl.updateUser);
+router.patch('/update', upload.single('avatarURL'), auth, ctrl.updateUser);
 
 module.exports = router;
