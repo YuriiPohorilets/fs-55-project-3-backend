@@ -128,10 +128,12 @@ const google = async (req, res) => {
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 
-  res.redirect(`https://name.app/login?token=${token}`);
+  res.redirect(`https://tiny-hare-cowboy-hat.cyclic.app/login?token=${token}`);
+  // https://tiny-hare-cowboy-hat.cyclic.app/
+  // https://kirill-filonchuk.github.io/pet_team02/
   
 };
-// https://kirill-filonchuk.github.io/pet_team02/
+
 
 
 module.exports = google;

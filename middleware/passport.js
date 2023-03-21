@@ -10,7 +10,7 @@ const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
 const googleParams = {
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: `http://yourdomain:3000/api/auth/google/callback`,
+  callbackURL: `http://localhost:3000/api/auth/google/callback`,
   // https://tiny-hare-cowboy-hat.cyclic.app/
   
   passReqCallback: true,
