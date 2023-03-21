@@ -12,6 +12,7 @@ const newsRoutes = require('./routes/api/news');
 const petsRoutes = require('./routes/api/pets');
 const noticesRoutes = require('./routes/api/notices');
 const servicesRoutes = require('./routes/api/services');
+const userPetsRoutes = require('./routes/api/userPets');
 //================ END ROUTES REQUIRE ================
 
 const configPath = path.join(__dirname, '.env');
@@ -37,6 +38,7 @@ app.use('/api/news', newsRoutes);
 app.use('/api/pets', petsRoutes);
 app.use('/api/notices', noticesRoutes);
 app.use('/api/services', servicesRoutes);
+app.use('/api/user-pets', userPetsRoutes);
 //================ END ROUTES ================
 
 connectDb();
