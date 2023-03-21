@@ -3,6 +3,7 @@ const { createNotice } = require('../../services/noticesService');
 const joiNoticeSchema = require('../../schemas/joiNoticeSchema');
 
 const addNotice = asyncHandler(async (req, res) => {
+  console.log(req.body, '||||||||||||RB|||||||||||');
   const { error } = joiNoticeSchema.validate(req.body);
   if (error) {
     return res.status(400).json({
