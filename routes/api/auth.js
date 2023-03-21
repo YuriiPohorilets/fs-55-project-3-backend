@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { auth: ctrl } = require('../../controllers');
-const { auth,upload } = require('../../middleware');
+const { auth, upload } = require('../../middleware');
 
 //================ REGISTER USER ================
 router.post('/signup', ctrl.signup);
@@ -14,10 +14,10 @@ router.post('/login', ctrl.login);
 router.get('/logout', auth, ctrl.logout);
 
 //================ UPDATE USER ================
-router.patch('/update', upload.single('avatarURL'), auth, ctrl.updateUser);
+router.patch('/update', auth, upload.single('avatarURL'), ctrl.updateUser);
 
 //================ REFRESH TOKEN =======
-router.get("/refresh", ctrl.refreshToken);
+router.get('/refresh', ctrl.refreshToken);
 
 //================ GOOGLE REGISTER USER =======
 
