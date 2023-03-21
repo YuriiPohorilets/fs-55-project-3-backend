@@ -278,7 +278,7 @@
         "tags": ["UserPets"],
         "summary": "",
         "parameters": [],
-        "security": [],
+        "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
             "description": "Success",
