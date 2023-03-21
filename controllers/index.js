@@ -3,6 +3,7 @@ const auth = require('./auth');
 const notices = require('./notices');
 const services = require('./services');
 const pets = require('./pets');
+const userPets = require('./userPets');
 
 module.exports = {
   auth,
@@ -10,4 +11,5 @@ module.exports = {
   notices,
   services,
   pets,
+  userPets,
 };
