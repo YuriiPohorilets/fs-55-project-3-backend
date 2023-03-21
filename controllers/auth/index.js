@@ -2,7 +2,8 @@ const signup = require('./signup');
 const login = require('./login');
 const logout = require('./logout');
 const updateUser = require('./updateUser');
-const google = require('./google');
+const refreshToken = require('./refreshToken');
+// const google = require('./google');
 
 
 
@@ -11,5 +12,6 @@ module.exports = {
   login,
   logout,
   updateUser,
-  google,
+  refreshToken,
+  // google,
 };
