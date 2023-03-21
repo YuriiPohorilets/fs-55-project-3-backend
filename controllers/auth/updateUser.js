@@ -4,6 +4,7 @@ const asyncHandler = require('express-async-handler');
 const updateUser = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { name, email, birthday, phone, city } = req.body;
+  const { path: avatarURL } = req.file;
 
   const updateInfo = await User.findOneAndUpdate(
     _id,
@@ -13,6 +14,7 @@ const updateUser = asyncHandler(async (req, res) => {
       birthday,
       phone,
       city,
+      avatarURL,
     },
     {
       new: true,
