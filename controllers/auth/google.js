@@ -128,7 +128,7 @@ const google = async (req, res) => {
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 
-  res.redirect(`https://pet_team02.vercel.app/login?token=${token}`);
+  res.redirect(`https://name.app/login?token=${token}`);
   
 };
 // https://kirill-filonchuk.github.io/pet_team02/
