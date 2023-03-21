@@ -25,6 +25,9 @@
     },
     {
       "name": "Services"
+    },
+    {
+      "name": "UserPets"
     }
   ],
 
@@ -254,6 +257,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeletePetResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/user-pets": {
+      "get": {
+        "tags": ["UserPets"],
+        "summary": "",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPetsResponse"
                 }
               }
             }
@@ -641,7 +673,7 @@
                 },
                 "favorite": {
                   "type": "array",
-                  "example": []
+                  "example": ["string"]
                 }
               }
             }
@@ -710,7 +742,7 @@
                 },
                 "favorite": {
                   "type": "array",
-                  "example": []
+                  "example": ["string"]
                 }
               }
             }
@@ -809,7 +841,7 @@
                 },
                 "favorite": {
                   "type": "array",
-                  "example": []
+                  "example": ["string"]
                 }
               }
             }
@@ -904,6 +936,98 @@
           "message": {
             "type": "string",
             "example": "Pet deleted"
+          }
+        }
+      },
+
+      "UserPetsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "200"
+          },
+          "result": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "64147eb23c83845366a969e3"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Polly"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "example": "01.01.2000"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+380998880000"
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "Ukraine, Lviv"
+                  },
+                  "avatarURL": {
+                    "type": "string",
+                    "example": "https://storage.example/image/avatar"
+                  },
+                  "favorite": {
+                    "type": "array",
+                    "example": ["string"]
+                  }
+                }
+              },
+              "pets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "64147eb23c83845366a969e3"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Stepan"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "example": "01.01.2020"
+                    },
+                    "breed": {
+                      "type": "string",
+                      "example": "French Bulldog"
+                    },
+                    "comment": {
+                      "type": "string",
+                      "example": "Some test about your pet"
+                    },
+                    "owner": {
+                      "type": "string",
+                      "example": "64147eb23c83845366a969e3"
+                    },
+                    "photo": {
+                      "type": "string",
+                      "example": "https://res.cloudinary.com/dixdf3mkj/image/upload/v1679329914/iswxm37rhz8zq3ow9wx8.jpg"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
