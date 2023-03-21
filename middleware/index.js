@@ -1,3 +1,6 @@
 const { auth } = require('../middleware/auth');
+const  passport  = require('../middleware/passport');
 
-module.exports = { auth };
+
+
+module.exports = { auth, passport };

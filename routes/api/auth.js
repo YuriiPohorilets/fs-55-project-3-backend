@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const {auth: ctrl} = require("../../controllers");
-const {auth}  = require('../../middleware');
+const {auth, passport }  = require('../../middleware');
+
 
 //================ REGISTER USER ================
 router.post('/signup', ctrl.signup);
@@ -15,5 +16,14 @@ router.get('/logout', auth, ctrl.logout);
 
 //================ UPDATE USER ================
 router.patch('/update', auth, ctrl.updateUser);
+
+//================ googleAuth REGISTER USER =======
+
+router.get('/google', passport.auth("google", {
+  scope: ["email", "profile"],
+}));
+
+router.get("/google/callback", passport.auth("google", { session: false }), ctrl.google);
+
 
 module.exports = router;
