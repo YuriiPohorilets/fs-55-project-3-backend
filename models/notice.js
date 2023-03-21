@@ -44,7 +44,7 @@ const noticeSchema = new Schema(
     },
     phone: {
       type: String,
-      required: [true, 'Phone field is required'],
+      // required: [true, 'Phone field is required'],
     },
     comments: {
       type: String,
