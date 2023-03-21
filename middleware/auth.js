@@ -3,6 +3,7 @@ const { User } = require('../models');
 // const { SECRET_KEY } = process.env;
 const SECRET_KEY = 'KLJLKDFVDF98jkfgdgg8d78D';
 
+
 const auth = async (req, res, next) => {
   const { authorization = '' } = req.headers;
   //  разделили bearer and token

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { auth: ctrl } = require('../../controllers');
-const { auth, upload } = require('../../middleware');
+const { auth,upload } = require('../../middleware');
 
 //================ REGISTER USER ================
 router.post('/signup', ctrl.signup);
@@ -15,5 +15,16 @@ router.get('/logout', auth, ctrl.logout);
 
 //================ UPDATE USER ================
 router.patch('/update', upload.single('avatarURL'), auth, ctrl.updateUser);
+
+//================ REFRESH TOKEN =======
+router.get("/refresh", ctrl.refreshToken);
+
+//================ GOOGLE REGISTER USER =======
+
+// router.get('/google', passport.auth("google", {
+//   scope: ["email", "profile"],
+// }));
+
+// router.get("/google/callback", passport.auth("google", { session: false }), ctrl.google);
 
 module.exports = router;
