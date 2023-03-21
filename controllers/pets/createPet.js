@@ -10,7 +10,7 @@ const cratePet = asyncHandler(async (req, res) => {
 
   const { _id } = req.user;
   const { name, birthday, breed, comment } = req.body;
-  const { path: photo } = req.file;
+  const photo = req.file ? path : '';
 
   // const pet = await findPetByName(name);
 
