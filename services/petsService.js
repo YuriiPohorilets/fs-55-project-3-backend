@@ -1,6 +1,6 @@
 const { Pet } = require('../models');
 
-const addPet = async ({ name, birthday, breed, comment, photo }, _id) => {
+const addPet = async ({ name, birthday, breed, comment, photo = '' }, _id) => {
   const newPet = await new Pet({ name, birthday, breed, comment, photo, owner: _id });
   await newPet.save();
 
