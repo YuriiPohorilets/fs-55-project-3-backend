@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY, REFRESH_SECRET_KEY } = process.env;
-// const SECRET_KEY="KLJLKDFVDF98jkfgdgg8d78D";
+// const SECRET_KEY = 'KLJLKDFVDF98jkfgdgg8d78D';
 
 const generateToken = ({ _id }) => {
 
@@ -15,4 +15,4 @@ const generateToken = ({ _id }) => {
   return { token, refreshToken };
 };
 
-module.exports = {generateToken };
+module.exports = { generateToken };

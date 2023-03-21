@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 // const { SECRET_KEY } = process.env;
-const SECRET_KEY="KLJLKDFVDF98jkfgdgg8d78D";
+const SECRET_KEY = 'KLJLKDFVDF98jkfgdgg8d78D';
 
 const auth = async (req, res, next) => {
   const { authorization = '' } = req.headers;
@@ -32,4 +32,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-module.exports =  {auth} ;
+module.exports = { auth };

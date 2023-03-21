@@ -6,6 +6,7 @@ const joiPetSchema = Joi.object({
   birthday: Joi.string().required(),
   breed: Joi.string().min(2).max(16).required(),
   comment: Joi.string().min(8).max(120).required(),
+  photo: Joi.string(),
 });
 
 module.exports = joiPetSchema;

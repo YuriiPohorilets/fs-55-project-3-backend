@@ -10,16 +10,21 @@ const cratePet = asyncHandler(async (req, res) => {
 
   const { _id } = req.user;
   const { name, birthday, breed, comment } = req.body;
+  const { path: photo } = req.file;
 
-  const pet = await findPetByName(name);
+  // const pet = await findPetByName(name);
 
-  if (pet) {
-    return res.status(409).json({ message: `Pet with ${name} already exist ` });
-  }
+  // if (pet.owner === _id) {
+  //   return res.status(409).json({ message: `Pet with name: ${name} already exist ` });
+  // }
 
-  const newPet = await addPet({ name, birthday, breed, comment }, _id);
+  const newPet = await addPet({ name, birthday, breed, comment, photo }, _id);
 
-  res.status(201).json(newPet);
+  res.json({
+    status: 'success',
+    code: 201,
+    result: newPet,
+  });
 });
 
 module.exports = cratePet;
