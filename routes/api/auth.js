@@ -17,7 +17,7 @@ router.get('/logout', auth, ctrl.logout);
 router.patch('/update', auth, upload.single('avatarURL'), ctrl.updateUser);
 
 //================ REFRESH TOKEN =======
-router.get('/refresh', ctrl.refreshToken);
+router.get('/refresh', ctrl.refresh);
 
 //================ GOOGLE REGISTER USER =======
 

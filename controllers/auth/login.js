@@ -3,6 +3,7 @@ const { joiLoginSchema } = require('../../schemas');
 const asyncHandler = require('express-async-handler');
 const { findUserByEmail, loginUser } = require('../../services/authService');
 const { generateToken } = require('../../helpers/generateToken');
+const { User } = require('../../models');
 
 const login = asyncHandler(async (req, res) => {
   const { error } = joiLoginSchema.validate(req.body);
@@ -21,13 +22,20 @@ const login = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: `Email or password is wrong` });
   }
 
-  const token = await generateToken(user);
-  await loginUser(user._id, token);
+  const { token, refreshToken } = await generateToken(user._id);
+
+  await User.findByIdAndUpdate(user._id, { token, refreshToken });
+
+  res.cookie('refreshToken', refreshToken, {
+    httpOnly: true,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  });
 
   res.json({
     status: 'success',
     code: 200,
     token: token,
+    refreshToken: refreshToken,
     result: {
       name: user.name,
       email: user.email,

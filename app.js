@@ -5,6 +5,7 @@ const path = require('path');
 const connectDb = require('./db/connection');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+const cookieParser = require("cookie-parser");
 
 //================ ROUTES REQUIRE ================
 const authRoutes = require('./routes/api/auth');
@@ -28,6 +29,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use(cookieParser());
 
 //================ ROUTES ================
 app.use('/api-docs', swaggerUi.serve);
