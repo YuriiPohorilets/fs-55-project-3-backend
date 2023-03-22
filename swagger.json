@@ -123,15 +123,9 @@
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "responses": {
-          "200": {
+          "204": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LogoutResponse"
-                }
-              }
-            }
+            "content": {}
           },
           "401": {
             "description": "Unauthorized",
@@ -751,24 +745,6 @@
                 }
               }
             }
-          }
-        }
-      },
-
-      "LogoutResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "success"
-          },
-          "code": {
-            "type": "number",
-            "example": "200"
-          },
-          "message": {
-            "type": "string",
-            "example": "User success logout"
           }
         }
       },
