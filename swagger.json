@@ -711,6 +711,11 @@
             "type": "string",
             "example": "eyJhbGciOiJIUz.eyJpZCI6IjY0MTgzZWJ.953U8XHlZd6LGgNPKy38"
           },
+          "refreshToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUz.eyJpZCI6IjY0MTgzZWJ.953U8XHlZd6LGgNPKy38"
+          },
+
           "result": {
             "type": "array",
             "items": {
