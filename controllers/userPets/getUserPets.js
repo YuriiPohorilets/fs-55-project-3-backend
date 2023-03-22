@@ -1,23 +1,27 @@
 const asyncHandler = require('express-async-handler');
-const { Pet } = require('../../models')
+const { findUserPets } = require('../../services/userPetsService');
 
 const getUserPets = asyncHandler(async (req, res) => {
-  const { _id, name, email, phone, city, birthday, avatarURL, favorite, } = req.user
-  const pets = await Pet.find({owner: _id})
+  const { _id, name, email, phone, city, birthday, avatarURL, favorite, token } = req.user;
+
+  const pets = await findUserPets(_id);
 
   res.json({
     status: 'success',
     code: 200,
     result: {
-      _id,
-      email,
-      name,
-      phone,
-      city,
-      birthday,
-      avatarURL,
-      favorite,
-      pets
+      user: {
+        _id,
+        token,
+        email,
+        name,
+        phone,
+        city,
+        birthday,
+        avatarURL,
+        favorite,
+      },
+      pets,
     },
   });
 });
