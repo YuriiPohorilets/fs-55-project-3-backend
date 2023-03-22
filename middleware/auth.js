@@ -1,8 +1,13 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-// const { SECRET_KEY } = process.env;
-const SECRET_KEY = 'KLJLKDFVDF98jkfgdgg8d78D';
+const path = require('path');
 
+// const SECRET_KEY = 'KLJLKDFVDF98jkfgdgg8d78D';
+const configPath = path.join(__dirname, '..', '.env');
+require('dotenv').config({
+  path: configPath,
+});
+process.env.SECRET_KEY
 const auth = async (req, res, next) => {
   const { authorization = '' } = req.headers;
   //  разделили bearer and token
@@ -15,7 +20,10 @@ const auth = async (req, res, next) => {
     }
 
     //  проверяем валидацию токена по id
-    const { id } = jwt.verify(token, SECRET_KEY);
+    // const { id } = jwt.verify(token, SECRET_KEY);
+    const { id } = jwt.verify(token, process.env.SECRET_KEY);
+
+    
     const user = await User.findById(id);
 
     if (!user || !user.token) {

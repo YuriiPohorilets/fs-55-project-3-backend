@@ -10,7 +10,7 @@ const registerNewUser = async ({ email, password, name }) => {
 };
 
 const loginUser = async (_id, token) => {
-  await User.findByIdAndUpdate(_id, { token });
+  await User.findByIdAndUpdate(_id, token);
 };
 
 const logoutUser = async _id => {
