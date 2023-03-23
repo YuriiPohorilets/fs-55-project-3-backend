@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const { auth: ctrl } = require('../../controllers');
 const { auth, upload } = require('../../middleware');
 
@@ -16,15 +15,10 @@ router.get('/logout', auth, ctrl.logout);
 //================ UPDATE USER ================
 router.patch('/update', auth, upload.single('avatarURL'), ctrl.updateUser);
 
-//================ REFRESH TOKEN =======
+//================ REFRESH TOKEN ================
 router.get('/refresh', ctrl.refresh);
 
-//================ GOOGLE REGISTER USER =======
-
-// router.get('/google', passport.auth("google", {
-//   scope: ["email", "profile"],
-// }));
-
-// router.get("/google/callback", passport.auth("google", { session: false }), ctrl.google);
+//================ DELETE USER AVATAR ================
+router.get('/deleteAvatar', auth, ctrl.deleteAvatar);
 
 module.exports = router;
