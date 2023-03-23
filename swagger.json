@@ -183,6 +183,35 @@
       }
     },
 
+    "/api/auth/refresh": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRefreshResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
+    },
+
     "/api/pets": {
       "post": {
         "tags": ["Pets"],
@@ -819,6 +848,64 @@
                 "avatarURL": {
                   "type": "string",
                   "example": "https://storage.example/image/avatar"
+                },
+                "favorite": {
+                  "type": "array",
+                  "example": ["string"]
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "UserRefreshResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "example": "200"
+          },
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUz.eyJpZCI6IjY0MTgzZWJ.953U8XHlZd6LGgNPKy38"
+          },
+          "refreshToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUz.eyJpZCI6IjY0MTgzZWJ.953U8XHlZd6LGgNPKy38"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Avocado"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+380998887766"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "Ukraine, Kyiv"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "00.00.0000"
+                },
+                "avatarURL": {
+                  "type": "string",
+                  "example": ""
                 },
                 "favorite": {
                   "type": "array",
