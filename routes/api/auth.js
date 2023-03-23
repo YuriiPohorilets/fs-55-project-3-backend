@@ -15,7 +15,10 @@ router.get('/logout', auth, ctrl.logout);
 //================ UPDATE USER ================
 router.patch('/update', auth, upload.single('avatarURL'), ctrl.updateUser);
 
-//================ REFRESH TOKEN =======
+//================ REFRESH TOKEN ================
 router.get('/refresh', ctrl.refresh);
+
+//================ DELETE USER AVATAR ================
+router.get('/deleteAvatar', auth, ctrl.deleteAvatar);
 
 module.exports = router;

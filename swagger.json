@@ -212,6 +212,39 @@
       }
     },
 
+    "/api/auth/deleteAvatar": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAvatarResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Image is missing",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "409": {
+            "description": "Failed to delete image",
+            "content": {}
+          }
+        }
+      }
+    },
+
     "/api/pets": {
       "post": {
         "tags": ["Pets"],
@@ -904,6 +937,60 @@
                   "example": "00.00.0000"
                 },
                 "avatarURL": {
+                  "type": "string",
+                  "example": ""
+                },
+                "favorite": {
+                  "type": "array",
+                  "example": ["string"]
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "DeleteAvatarResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ok"
+          },
+          "code": {
+            "type": "number",
+            "example": "200"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Avocado"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+380998887766"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "Ukraine, Kyiv"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "00.00.0000"
+                },
+                "avatarURL": {
+                  "type": "string",
+                  "example": ""
+                },
+                "imgId": {
                   "type": "string",
                   "example": ""
                 },

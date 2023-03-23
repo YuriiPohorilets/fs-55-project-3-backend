@@ -5,6 +5,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { name, email, birthday, phone, city } = req.body;
   const avatarURL = req.file ? req.file.path : req.user.avatarURL;
+  const imgId = req.file ? req.file.filename : req.user.imgId;
 
   const updateInfo = await User.findOneAndUpdate(
     _id,
@@ -15,6 +16,7 @@ const updateUser = asyncHandler(async (req, res) => {
       phone,
       city,
       avatarURL,
+      imgId,
     },
     {
       new: true,
@@ -31,6 +33,7 @@ const updateUser = asyncHandler(async (req, res) => {
       birthday: updateInfo.birthday,
       avatarURL: updateInfo.avatarURL,
       favorite: updateInfo.favorite,
+      imgId: updateInfo.imgId,
     },
   });
 });

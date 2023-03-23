@@ -34,6 +34,10 @@ const userSchema = new Schema(
       type: String,
       default: '',
     },
+    imgId: {
+      type: String,
+      default: null,
+    },
     token: {
       type: String,
       default: null,
