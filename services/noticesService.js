@@ -8,7 +8,7 @@ const createNotice = async req => {
   return createdNotice;
 };
 
-const getAll = async req => {
+const getAllByCategories = async req => {
   const { category } = req.params;
   const { page = 1, limit = 10, favorite } = req.query;
   const skip = (page - 1) * limit;
@@ -18,7 +18,7 @@ const getAll = async req => {
   return notices;
 };
 
-const getOne = async req => {
+const getOneById = async req => {
   const { noticeId } = req.params;
   const notice = await Notice.findById(noticeId);
   return notice;
@@ -80,8 +80,8 @@ const removeUserNotice = async req => {
 
 module.exports = {
   createNotice,
-  getAll,
-  getOne,
+  getAllByCategories,
+  getOneById,
   addDeleteToFavorite,
   getFavoriteNotices,
   getNoticesByUser,

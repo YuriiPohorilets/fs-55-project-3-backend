@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler');
-const { getAll } = require('../../services/noticesService');
+const { getAllByCategories } = require('../../services/noticesService');
 
 const getByCategory = asyncHandler(async (req, res) => {
-  const notices = await getAll(req);
+  const notices = await getAllByCategories(req);
 
   if (!notices) {
     res.status(400).json({
