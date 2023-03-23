@@ -1,33 +1,29 @@
-// const { notices } = require('../controllers');
 const { Notice, User } = require('../models');
-// const { id } = require('../schemas/joiSignupSchema');
 
-const createNotice = async req => {
-  const { _id, email, phone } = req.user;
-  const createdNotice = await Notice.create({ ...req.body, owner: _id, email, phone });
+const createNotice = async (body, _id, email, phone) => {
+
+  const createdNotice = await Notice.create({ ...body, owner: _id, email, phone });
   return createdNotice;
 };
 
-const getAllByCategories = async req => {
-  const { category } = req.params;
-  const { page = 1, limit = 10, favorite } = req.query;
-  const skip = (page - 1) * limit;
+const getAllByCategories = async category => {
+  
+  // const { page = 1, limit = 10, favorite } = req.query;
+  // const skip = (page - 1) * limit;
 
   const notices = await Notice.find({ category }).sort({ updatedAt: -1 });
-
   return notices;
 };
 
-const getOneById = async req => {
-  const { noticeId } = req.params;
-  const notice = await Notice.findById(noticeId);
+const getOneById = async id => {
+  
+  const notice = await Notice.findById(id);
   return notice;
 };
 
-const addDeleteToFavorite = async req => {
-  const { noticeId } = req.params;
-  const { _id } = req.user;
-  const user = await User.findById(_id);
+const addDeleteToFavorite = async (noticeId, userId) => {
+  
+  const user = await User.findById(userId);
   // const notice = await Notice.findOne({ _id: noticeId, owner: user.id });
 
   if (!user) return null;
@@ -47,8 +43,8 @@ const addDeleteToFavorite = async req => {
   return user.favorite;
 };
 
-const getFavoriteNotices = async req => {
-  const { _id } = req.user;
+const getFavoriteNotices = async _id => {
+  
   const { favorite } = await User.findById(_id);
   const ids = favorite.map(el => el.toString());
 
@@ -63,20 +59,17 @@ const getFavoriteNotices = async req => {
   );
 };
 
-const getNoticesByUser = async req => {
-  const { _id } = req.user;
-  const notices = await Notice.find({ owner: _id }).sort({ updatedAt: -1 });
+const getNoticesByUser = async id => {
+  
+  const notices = await Notice.find({ owner: id }).sort({ updatedAt: -1 });
 
   return notices;
 };
 
-const removeUserNotice = async req => {
-  const { _id } = req.user;
-  const { noticeId } = req.params;
-  const deletedNotice = await Notice.findOneAndRemove({ _id: noticeId, owner: _id });
-
+const removeUserNotice = async (userId, noticeId) => {
+  
+  const deletedNotice = await Notice.findOneAndRemove({ _id: noticeId, owner: userId });
   if (!deletedNotice) return null;
-
   return true;
 };
 
