@@ -3,7 +3,7 @@ const { User } = require('../../models');
 const { joiSignupSchema } = require('../../schemas');
 const asyncHandler = require('express-async-handler');
 const { generateToken } = require('../../helpers');
-const { registerNewUser, findUserByEmail } = require('../../services/authService');
+const { registerNewUser, findUserByEmail} = require('../../services/authService');
 
 const signup = asyncHandler(async (req, res) => {
   const { error } = joiSignupSchema.validate(req.body);

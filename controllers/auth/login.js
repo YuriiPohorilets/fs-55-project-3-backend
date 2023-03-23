@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
 const { joiLoginSchema } = require('../../schemas');
-const asyncHandler = require('express-async-handler');
-const { findUserByEmail, loginUser } = require('../../services/authService');
-const { generateToken } = require('../../helpers/generateToken');
 const { User } = require('../../models');
+const asyncHandler = require('express-async-handler');
+const { findUserByEmail } = require('../../services/authService');
+const { generateToken } = require('../../helpers');
 
 const login = asyncHandler(async (req, res) => {
   const { error } = joiLoginSchema.validate(req.body);
@@ -16,14 +16,14 @@ const login = asyncHandler(async (req, res) => {
   if (!user) {
     return res.status(409).json({ message: 'User with this email not found' });
   }
-
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
     return res.status(401).json({ message: `Email or password is wrong` });
   }
 
-  const { token, refreshToken } = await generateToken(user._id);
 
+  
+  const { token, refreshToken } = await generateToken(user._id);
   await User.findByIdAndUpdate(user._id, { token, refreshToken });
 
   res.cookie('refreshToken', refreshToken, {
@@ -34,8 +34,8 @@ const login = asyncHandler(async (req, res) => {
   res.json({
     status: 'success',
     code: 200,
-    token: token,
-    refreshToken: refreshToken,
+    token,
+    refreshToken,
     result: {
       name: user.name,
       email: user.email,

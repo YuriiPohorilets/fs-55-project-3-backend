@@ -9,11 +9,11 @@ const {
 } = require('./patterns');
 
 const joiSignupSchema = Joi.object({
-  email: Joi.string().pattern(emailPattern).min(10).max(40).required(),
-  password: Joi.string().pattern(passwordPattern).required(),
-  name: Joi.string().pattern(namePattern).required(),
+  email: Joi.string().pattern(emailPattern).min(10).max(64).required(),
+  password: Joi.string().pattern(passwordPattern).min(7).max(32).required(),
+  name: Joi.string().pattern(namePattern).min(1).max(24).required(),
   phone: Joi.string().pattern(phonePattern).allow(null, ''),
-  city: Joi.string().pattern(locationPattern).allow(null, ''),
+  city: Joi.string().pattern(locationPattern).min(5).max(35).allow(null, ''),
   birthday: Joi.date().format(['DD.MM.YYYY']).utc().allow(null, ''),
 });
 
