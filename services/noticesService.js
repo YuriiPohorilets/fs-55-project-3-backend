@@ -12,8 +12,8 @@ const getAllByCategories = async req => {
   const { category } = req.params;
   const { page = 1, limit = 10, favorite } = req.query;
   const skip = (page - 1) * limit;
-  
-  const notices = await Notice.find({ category });
+
+  const notices = await Notice.find({ category }).sort({ updatedAt: -1 });
 
   return notices;
 };
@@ -58,12 +58,14 @@ const getFavoriteNotices = async req => {
     return notices.find(notice => notice._id.toString() === id);
   });
 
-  return favoriteNotices;
+  return favoriteNotices.sort(
+    (firstNotice, secondNotice) => secondNotice.updatedAt - firstNotice.updatedAt
+  );
 };
 
 const getNoticesByUser = async req => {
   const { _id } = req.user;
-  const notices = await Notice.find({ owner: _id });
+  const notices = await Notice.find({ owner: _id }).sort({ updatedAt: -1 });
 
   return notices;
 };
