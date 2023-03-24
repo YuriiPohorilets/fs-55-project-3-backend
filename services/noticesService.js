@@ -5,24 +5,24 @@ const createNotice = async (body, _id, email, phone) => {
   return createdNotice;
 };
 
-const getAllByCategory = async category => {
-  // const { page = 1, limit = 10, favorite } = req.query;
-  // const skip = (page - 1) * limit;
+const getAllByCategory = async (category, page, limit) => {
+  const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ category }).sort({ updatedAt: -1 });
+  const notices = await Notice.find({ category }, '', {
+    skip,
+    limit: Number(limit),
+  }).sort({ updatedAt: -1 });
 
-  const result = notices.map(notice => 
-    ({
-      category:  notice.category,
-      _id:  notice._id,
-      title:  notice.title,
-      breed:  notice.breed,
-      place:  notice.place,
-      birthday:  notice.birthday,
-      petAvatarURL:  notice.petAvatarURL,
-      price:  notice.price
-    })
-  );
+  const result = notices.map(notice => ({
+    category: notice.category,
+    _id: notice._id,
+    title: notice.title,
+    breed: notice.breed,
+    place: notice.place,
+    birthday: notice.birthday,
+    petAvatarURL: notice.petAvatarURL,
+    price: notice.price,
+  }));
 
   return result;
 };
