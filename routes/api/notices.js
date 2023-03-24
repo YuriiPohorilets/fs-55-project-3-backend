@@ -10,13 +10,13 @@ router.get('/categories/:category', ctrl.getByCategory);
 router.get('/notice/:noticeId', ctrl.getById);
 
 //================ GET USER FAVORITE NOTICES ================
-router.get('/user/favorites', auth, ctrl.getFavorite);
+router.get('/favorites', auth, ctrl.getFavorite);
 
 //================ GET USER NOTICES ================
-router.get('/user', auth, ctrl.getByUser);
+router.get('/', auth, ctrl.getByUser);
 
 //================ DELETE USER NOTICE ================
-router.delete('/user/:noticeId', auth, ctrl.removeNotice);
+router.delete('/:noticeId', auth, ctrl.removeNotice);
 
 //================ ADD/DELETE NOTICE TO FAVORITE ================
 router.patch('/:noticeId', auth, ctrl.favoriteNotices);

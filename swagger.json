@@ -423,7 +423,7 @@
       }
     },
 
-    "/api/notices/user/favorites": {
+    "/api/notices/favorites": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -459,7 +459,7 @@
       }
     },
 
-    "/api/notices/user": {
+    "/api/notices": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -495,7 +495,7 @@
       }
     },
 
-    "/api/notices/user/{noticeId}": {
+    "/api/notices/{noticeId}": {
       "delete": {
         "tags": ["Notices"],
         "summary": "",
