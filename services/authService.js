@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const cloudinary = require('cloudinary').v2;
 
 const findUserByEmail = async ({ email }) => {
   const user = await User.findOne({ email });
@@ -10,7 +11,7 @@ const registerNewUser = async ({ email, password, name }) => {
 };
 
 const loginUser = async (_id, token) => {
-  await User.findByIdAndUpdate(_id, { token });
+  await User.findByIdAndUpdate(_id, token);
 };
 
 const logoutUser = async _id => {
@@ -22,10 +23,37 @@ const findUserById = async _id => {
   return user;
 };
 
+const deleteImage = async imgId => {
+  const result = await cloudinary.uploader.destroy(imgId);
+  return result;
+};
+
+const updateUserById = async (_id, { name, email, birthday, phone, city, avatarURL, imgId }) => {
+  const user = await User.findOneAndUpdate(
+    _id,
+    {
+      name,
+      email,
+      birthday,
+      phone,
+      city,
+      avatarURL,
+      imgId,
+    },
+    {
+      new: true,
+    }
+  );
+
+  return user;
+};
+
 module.exports = {
   findUserByEmail,
   registerNewUser,
   loginUser,
   logoutUser,
   findUserById,
+  deleteImage,
+  updateUserById,
 };

@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const { createNotice } = require('../../services/noticesService');
-const joiNoticeSchema = require('../../schemas/joiNoticeSchema');
+const { joiNoticeSchema } = require('../../schemas');
 
 const addNotice = asyncHandler(async (req, res) => {
   const { error } = joiNoticeSchema.validate(req.body);
