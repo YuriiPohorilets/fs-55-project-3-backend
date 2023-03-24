@@ -495,7 +495,7 @@
       }
     },
 
-    "/api/notices/{noticeId}": {
+    "/api/notices/{deletedNoticeId}": {
       "delete": {
         "tags": ["Notices"],
         "summary": "",
@@ -563,7 +563,7 @@
       }
     },
 
-    "/api/notices": {
+    "/api/notice": {
       "post": {
         "tags": ["Notices"],
         "summary": "",
