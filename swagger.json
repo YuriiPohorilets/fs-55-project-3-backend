@@ -213,7 +213,7 @@
     },
 
     "/api/auth/deleteAvatar": {
-      "post": {
+      "get": {
         "tags": ["Auth"],
         "summary": "",
         "parameters": [],
