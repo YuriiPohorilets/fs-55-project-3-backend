@@ -1,28 +1,38 @@
 const { Notice, User } = require('../models');
 
 const createNotice = async (body, _id, email, phone) => {
-
   const createdNotice = await Notice.create({ ...body, owner: _id, email, phone });
   return createdNotice;
 };
 
-const getAllByCategories = async category => {
-  
+const getAllByCategory = async category => {
   // const { page = 1, limit = 10, favorite } = req.query;
   // const skip = (page - 1) * limit;
 
   const notices = await Notice.find({ category }).sort({ updatedAt: -1 });
-  return notices;
+
+  const result = notices.map(notice => 
+    ({
+      category:  notice.category,
+      _id:  notice._id,
+      title:  notice.title,
+      breed:  notice.breed,
+      place:  notice.place,
+      birthday:  notice.birthday,
+      petAvatarURL:  notice.petAvatarURL,
+      price:  notice.price
+    })
+  );
+
+  return result;
 };
 
 const getOneById = async id => {
-  
   const notice = await Notice.findById(id);
   return notice;
 };
 
 const addDeleteToFavorite = async (noticeId, userId) => {
-  
   const user = await User.findById(userId);
   // const notice = await Notice.findOne({ _id: noticeId, owner: user.id });
 
@@ -44,7 +54,6 @@ const addDeleteToFavorite = async (noticeId, userId) => {
 };
 
 const getFavoriteNotices = async _id => {
-  
   const { favorite } = await User.findById(_id);
   const ids = favorite.map(el => el.toString());
 
@@ -60,14 +69,12 @@ const getFavoriteNotices = async _id => {
 };
 
 const getNoticesByUser = async id => {
-  
   const notices = await Notice.find({ owner: id }).sort({ updatedAt: -1 });
 
   return notices;
 };
 
 const removeUserNotice = async (userId, noticeId) => {
-  
   const deletedNotice = await Notice.findOneAndRemove({ _id: noticeId, owner: userId });
   if (!deletedNotice) return null;
   return true;
@@ -75,7 +82,7 @@ const removeUserNotice = async (userId, noticeId) => {
 
 module.exports = {
   createNotice,
-  getAllByCategories,
+  getAllByCategory,
   getOneById,
   addDeleteToFavorite,
   getFavoriteNotices,
