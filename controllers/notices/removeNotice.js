@@ -2,7 +2,10 @@ const asyncHandler = require('express-async-handler');
 const { removeUserNotice } = require('../../services/noticesService');
 
 const removeNotice = asyncHandler(async (req, res) => {
-  const isDeleted = await removeUserNotice(req);
+
+  const { _id } = req.user;
+  const { noticeId } = req.params;
+  const isDeleted = await removeUserNotice(_id, noticeId);
 
   if (!isDeleted) {
     res.status(400).json({

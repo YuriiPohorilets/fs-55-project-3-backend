@@ -1,8 +1,9 @@
 const asyncHandler = require('express-async-handler');
-const { getOne } = require('../../services/noticesService');
+const { getOneById } = require('../../services/noticesService');
 
 const getById = asyncHandler(async (req, res) => {
-  const notice = await getOne(req);
+  const { noticeId } = req.params;
+  const notice = await getOneById(noticeId);
 
   if (!notice) {
     res.status(400).json({

@@ -2,7 +2,9 @@ const asyncHandler = require('express-async-handler');
 const { getNoticesByUser } = require('../../services/noticesService');
 
 const getByUser = asyncHandler(async (req, res) => {
-  const notices = await getNoticesByUser(req);
+  
+  const { _id } = req.user;
+  const notices = await getNoticesByUser(_id);
 
   if (!notices) {
     res.status(400).json({

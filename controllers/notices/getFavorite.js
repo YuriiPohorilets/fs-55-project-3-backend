@@ -2,7 +2,9 @@ const asyncHandler = require('express-async-handler');
 const { getFavoriteNotices } = require('../../services/noticesService');
 
 const getFavorite = asyncHandler(async (req, res) => {
-  const notices = await getFavoriteNotices(req);
+
+  const { _id } = req.user;
+  const notices = await getFavoriteNotices(_id);
 
   if (!notices) {
     res.status(400).json({
