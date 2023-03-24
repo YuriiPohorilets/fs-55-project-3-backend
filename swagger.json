@@ -423,7 +423,7 @@
       }
     },
 
-    "/api/notices/{userId}/favorites": {
+    "/api/notices/user/favorites": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -459,7 +459,7 @@
       }
     },
 
-    "/api/notices/{userId}": {
+    "/api/notices/user": {
       "get": {
         "tags": ["Notices"],
         "summary": "",
@@ -495,7 +495,7 @@
       }
     },
 
-    "/api/notices/{noticeId}": {
+    "/api/notices/user/{noticeId}": {
       "delete": {
         "tags": ["Notices"],
         "summary": "",
@@ -531,7 +531,7 @@
       }
     },
 
-    "/api/notices/{noticeId}/favorite": {
+    "/api/notices/{noticeId}": {
       "patch": {
         "tags": ["Notices"],
         "summary": "",
