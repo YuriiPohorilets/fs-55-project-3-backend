@@ -22,6 +22,6 @@ router.delete('/:noticeId', auth, ctrl.removeNotice);
 router.patch('/:noticeId', auth, ctrl.favoriteNotices);
 
 //================ CREATE NOTICE ================
-router.post('/', auth, ctrl.addNotice);
+router.post('/notice', auth, ctrl.addNotice);
 
 module.exports = router;

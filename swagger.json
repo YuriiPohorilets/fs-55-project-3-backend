@@ -563,7 +563,7 @@
       }
     },
 
-    "/api/notice": {
+    "/api/notices/notice": {
       "post": {
         "tags": ["Notices"],
         "summary": "",
