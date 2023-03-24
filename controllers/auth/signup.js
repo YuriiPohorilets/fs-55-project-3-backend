@@ -3,7 +3,7 @@ const { User } = require('../../models');
 const { joiSignupSchema } = require('../../schemas');
 const asyncHandler = require('express-async-handler');
 const { generateToken } = require('../../helpers');
-const { registerNewUser, findUserByEmail} = require('../../services/authService');
+const { findUserByEmail } = require('../../services/authService');
 
 const signup = asyncHandler(async (req, res) => {
   const { error } = joiSignupSchema.validate(req.body);
@@ -19,7 +19,7 @@ const signup = asyncHandler(async (req, res) => {
   }
 
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-  const newUser = await registerNewUser({
+  const newUser = await User.create({
     ...req.body,
     password: hashPassword,
   });
