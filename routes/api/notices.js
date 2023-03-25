@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { notices: ctrl } = require('../../controllers');
-const { auth } = require('../../middleware');
+const { auth, upload } = require('../../middleware');
 
 //================ GET NOTICES BY CATEGORY ================
 router.get('/categories/:category', ctrl.getByCategory);
@@ -22,6 +22,6 @@ router.delete('/:noticeId', auth, ctrl.removeNotice);
 router.patch('/:noticeId', auth, ctrl.favoriteNotices);
 
 //================ CREATE NOTICE ================
-router.post('/notice', auth, ctrl.addNotice);
+router.post('/notice', upload.single('image'), auth, ctrl.addNotice);
 
 module.exports = router;

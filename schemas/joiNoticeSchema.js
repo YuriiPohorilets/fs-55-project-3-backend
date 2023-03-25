@@ -10,6 +10,7 @@ const joiNoticeSchema = Joi.object({
   sex: Joi.string().valid('male', 'female').required(),
   category: Joi.string().valid('sell', 'in-good-hands', 'lost-found').required(),
   price: Joi.string(),
+  petAvatarURL: Joi.string(),
   comment: Joi.string().min(8).max(120),
 });
 

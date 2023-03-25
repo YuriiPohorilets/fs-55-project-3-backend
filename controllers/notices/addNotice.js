@@ -13,8 +13,9 @@ const addNotice = asyncHandler(async (req, res) => {
   }
 
   const { _id, email, phone } = req.user;
+  const { image: petAvatarURL } = req.file;
 
-  const createdNotice = await createNotice(req.body, _id, email, phone);
+  const createdNotice = await createNotice(req.body, _id, email, phone, petAvatarURL);
   if (!createdNotice) {
     res.status(400).json({
       code: 400,
