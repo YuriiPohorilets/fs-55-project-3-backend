@@ -108,7 +108,6 @@ const removeUserNotice = async (userId, noticeId) => {
 module.exports = {
   createNotice,
   getAllByCategory,
-  // getLengthNoticesByCategories,
   getOneById,
   addDeleteToFavorite,
   getFavoriteNotices,

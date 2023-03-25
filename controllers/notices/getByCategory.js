@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const { getAllByCategory, getLengthNoticesByCategories } = require('../../services/noticesService');
+const { getAllByCategory } = require('../../services/noticesService');
 
 const getByCategory = asyncHandler(async (req, res) => {
   const { category } = req.params;
