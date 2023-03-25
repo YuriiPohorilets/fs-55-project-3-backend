@@ -3,8 +3,9 @@ const { getAllByCategory } = require('../../services/noticesService');
 
 const getByCategory = asyncHandler(async (req, res) => {
   const { category } = req.params;
-  const { page = 1, limit = 10} = req.query;
+  const { page = 1, limit = 10 } = req.query;
   const notices = await getAllByCategory(category, page, limit);
+  const resultLength = notices.length;
 
   if (!notices) {
     res.status(400).json({
@@ -16,6 +17,7 @@ const getByCategory = asyncHandler(async (req, res) => {
   res.status(200).json({
     code: 200,
     status: 'success',
+    length: resultLength,
     result: notices,
   });
 });

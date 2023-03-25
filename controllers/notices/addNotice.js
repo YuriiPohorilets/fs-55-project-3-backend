@@ -12,7 +12,6 @@ const addNotice = asyncHandler(async (req, res) => {
     });
   }
 
-  console.log(req.body);
   const { _id, email, phone } = req.user;
   const createdNotice = await createNotice(req.body, _id, email, phone);
   if (!createdNotice) {
