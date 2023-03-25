@@ -13,7 +13,7 @@ const getAllByCategory = async (category, page, limit) => {
     limit: Number(limit),
   }).sort({ updatedAt: -1 });
 
-  const result = notices.map(notice => ({
+  const resultNotices = notices.map(notice => ({
     category: notice.category,
     _id: notice._id,
     title: notice.title,
@@ -23,16 +23,17 @@ const getAllByCategory = async (category, page, limit) => {
     petAvatarURL: notice.petAvatarURL,
     price: notice.price,
   }));
+  const resultLength = await getLengthNotices(Notice, { category });
 
-  return result;
+  return { resultNotices, resultLength };
 };
 
-const getLengthNoticesByCategories = async category => {
-  const notices = await Notice.find({category});
-  if(!notices) return null;
+const getLengthNotices = async (model, param) => {
+  const notices = await model.find(param);
+  if (!notices) return null;
 
   return notices.length;
-}
+};
 
 const getOneById = async id => {
   const notice = await Notice.findById(id);
@@ -75,10 +76,17 @@ const getFavoriteNotices = async _id => {
   );
 };
 
-const getNoticesByUser = async id => {
-  const notices = await Notice.find({ owner: id }).sort({ updatedAt: -1 });
+const getNoticesByUser = async (id, page, limit) => {
+  const skip = (page - 1) * limit;
 
-  return notices;
+  const notices = await Notice.find({ owner: id }, '', {
+    skip,
+    limit: Number(limit),
+  }).sort({ updatedAt: -1 });
+
+  const noticesLength = await getLengthNotices(Notice, { owner: id });
+
+  return { notices, noticesLength };
 };
 
 const removeUserNotice = async (userId, noticeId) => {
@@ -90,7 +98,7 @@ const removeUserNotice = async (userId, noticeId) => {
 module.exports = {
   createNotice,
   getAllByCategory,
-  getLengthNoticesByCategories,
+  // getLengthNoticesByCategories,
   getOneById,
   addDeleteToFavorite,
   getFavoriteNotices,

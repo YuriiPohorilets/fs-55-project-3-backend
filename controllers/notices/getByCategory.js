@@ -4,10 +4,9 @@ const { getAllByCategory, getLengthNoticesByCategories } = require('../../servic
 const getByCategory = asyncHandler(async (req, res) => {
   const { category } = req.params;
   const { page = 1, limit = 10 } = req.query;
-  const notices = await getAllByCategory(category, page, limit);
-  const resultLength = await getLengthNoticesByCategories(category);
+  const { resultNotices, resultLength } = await getAllByCategory(category, page, limit);
 
-  if (!notices) {
+  if (!resultNotices) {
     res.status(400).json({
       code: 400,
       status: 'bad request',
@@ -18,7 +17,7 @@ const getByCategory = asyncHandler(async (req, res) => {
     code: 200,
     status: 'success',
     total: resultLength,
-    result: notices,
+    result: resultNotices,
   });
 });
 
