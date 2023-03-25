@@ -27,6 +27,13 @@ const getAllByCategory = async (category, page, limit) => {
   return result;
 };
 
+const getLengthNoticesByCategories = async category => {
+  const notices = await Notice.find({category});
+  if(!notices) return null;
+
+  return notices.length;
+}
+
 const getOneById = async id => {
   const notice = await Notice.findById(id);
   return notice;
@@ -83,6 +90,7 @@ const removeUserNotice = async (userId, noticeId) => {
 module.exports = {
   createNotice,
   getAllByCategory,
+  getLengthNoticesByCategories,
   getOneById,
   addDeleteToFavorite,
   getFavoriteNotices,
