@@ -61,7 +61,7 @@ const addDeleteToFavorite = async (noticeId, userId) => {
   return user.favorite;
 };
 
-const getFavoriteNotices = async _id => {
+const getFavoriteNotices = async (_id, page, limit) => {
   const { favorite } = await User.findById(_id);
   const ids = favorite.map(el => el.toString());
 
@@ -70,10 +70,20 @@ const getFavoriteNotices = async _id => {
   const favoriteNotices = ids.map(id => {
     return notices.find(notice => notice._id.toString() === id);
   });
+  const resultLength = favoriteNotices.length;
 
-  return favoriteNotices.sort(
+  favoriteNotices.sort(
     (firstNotice, secondNotice) => secondNotice.updatedAt - firstNotice.updatedAt
   );
+
+  function favoritePagination(arr, pagPage, pagLimit) {
+    const start = (pagPage - 1) * pagLimit;
+    return arr.splice(start, pagLimit);
+  };
+
+  const result = favoritePagination(favoriteNotices, page, limit);
+
+  return { result, resultLength };
 };
 
 const getNoticesByUser = async (id, page, limit) => {
