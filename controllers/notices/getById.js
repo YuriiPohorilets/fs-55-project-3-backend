@@ -4,6 +4,7 @@ const { getOneById } = require('../../services/noticesService');
 const getById = asyncHandler(async (req, res) => {
   const { noticeId } = req.params;
   const notice = await getOneById(noticeId);
+  const resultLength = notice.length;
 
   if (!notice) {
     res.status(400).json({
@@ -15,6 +16,7 @@ const getById = asyncHandler(async (req, res) => {
   res.status(200).json({
     code: 200,
     status: 'success',
+    resultLength,
     result: notice,
   });
 });

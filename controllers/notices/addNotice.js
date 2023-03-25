@@ -13,6 +13,7 @@ const addNotice = asyncHandler(async (req, res) => {
   }
 
   const { _id, email, phone } = req.user;
+
   const createdNotice = await createNotice(req.body, _id, email, phone);
   if (!createdNotice) {
     res.status(400).json({
