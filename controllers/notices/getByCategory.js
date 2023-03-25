@@ -17,7 +17,7 @@ const getByCategory = asyncHandler(async (req, res) => {
   res.status(200).json({
     code: 200,
     status: 'success',
-    resultLength,
+    total: resultLength,
     result: notices,
   });
 });
