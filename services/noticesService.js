@@ -5,13 +5,17 @@ const createNotice = async (body, _id, email, phone, petAvatarURL) => {
   return createdNotice;
 };
 
-const getAllByCategory = async (category, page, limit) => {
+const getAllByCategory = async (category, query, page, limit) => {
   const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ category }, '', {
-    skip,
-    limit: Number(limit),
-  }).sort({ updatedAt: -1 });
+  const notices = await Notice.find(
+    { category, title: { $regex: `${query}`, $options: 'i' } },
+    '',
+    {
+      skip,
+      limit: Number(limit),
+    }
+  ).sort({ updatedAt: -1 });
 
   const resultNotices = notices.map(notice => ({
     category: notice.category,
@@ -23,7 +27,10 @@ const getAllByCategory = async (category, page, limit) => {
     petAvatarURL: notice.petAvatarURL,
     price: notice.price,
   }));
-  const resultLength = await getLengthNotices(Notice, { category });
+  const resultLength = await getLengthNotices(Notice, {
+    category,
+    title: { $regex: `${query}`, $options: 'i' },
+  });
 
   return { resultNotices, resultLength };
 };
@@ -61,7 +68,7 @@ const addDeleteToFavorite = async (noticeId, userId) => {
   return user.favorite;
 };
 
-const getFavoriteNotices = async (_id, page, limit) => {
+const getFavoriteNotices = async (_id, query, page, limit) => {
   const { favorite } = await User.findById(_id);
   const ids = favorite.map(el => el.toString());
 
@@ -70,31 +77,42 @@ const getFavoriteNotices = async (_id, page, limit) => {
   const favoriteNotices = ids.map(id => {
     return notices.find(notice => notice._id.toString() === id);
   });
-  const resultLength = favoriteNotices.length;
 
-  favoriteNotices.sort(
+  const fondFavNotices = favoriteNotices.filter(notice => {
+    return notice.title.toLowerCase().includes(`${query.toLowerCase()}`);
+  });
+  const resultLength = fondFavNotices.length;
+
+  fondFavNotices.sort(
     (firstNotice, secondNotice) => secondNotice.updatedAt - firstNotice.updatedAt
   );
 
   function favoritePagination(arr, pagPage, pagLimit) {
     const start = (pagPage - 1) * pagLimit;
     return arr.splice(start, pagLimit);
-  };
+  }
 
-  const result = favoritePagination(favoriteNotices, page, limit);
+  const result = favoritePagination(fondFavNotices, page, limit);
 
   return { result, resultLength };
 };
 
-const getNoticesByUser = async (id, page, limit) => {
+const getNoticesByUser = async (id, query, page, limit) => {
   const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ owner: id }, '', {
-    skip,
-    limit: Number(limit),
-  }).sort({ updatedAt: -1 });
+  const notices = await Notice.find(
+    { owner: id, title: { $regex: `${query}`, $options: 'i' } },
+    '',
+    {
+      skip,
+      limit: Number(limit),
+    }
+  ).sort({ updatedAt: -1 });
 
-  const noticesLength = await getLengthNotices(Notice, { owner: id });
+  const noticesLength = await getLengthNotices(Notice, {
+    owner: id,
+    title: { $regex: `${query}`, $options: 'i' },
+  });
 
   return { notices, noticesLength };
 };
