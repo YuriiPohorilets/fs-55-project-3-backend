@@ -11,7 +11,7 @@ const joiNoticeSchema = Joi.object({
   category: Joi.string().valid('sell', 'in-good-hands', 'lost-found').required(),
   price: Joi.string(),
   petAvatarURL: Joi.string(),
-  comment: Joi.string().min(8).max(120),
+  comments: Joi.string().min(8).max(120),
 });
 
 module.exports = joiNoticeSchema;
