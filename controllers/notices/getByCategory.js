@@ -3,8 +3,8 @@ const { getAllByCategory } = require('../../services/noticesService');
 
 const getByCategory = asyncHandler(async (req, res) => {
   const { category } = req.params;
-  const { page = 1, limit = 10 } = req.query;
-  const { resultNotices, resultLength } = await getAllByCategory(category, page, limit);
+  const { query = '', page = 1, limit = 10 } = req.query;
+  const { resultNotices, resultLength } = await getAllByCategory(category, query, page, limit);
 
   if (!resultNotices) {
     res.status(400).json({

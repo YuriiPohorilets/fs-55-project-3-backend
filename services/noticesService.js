@@ -5,10 +5,10 @@ const createNotice = async (body, _id, email, phone, petAvatarURL) => {
   return createdNotice;
 };
 
-const getAllByCategory = async (category, page, limit) => {
+const getAllByCategory = async (category, query, page, limit) => {
   const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ category }, '', {
+  const notices = await Notice.find({ category, title: { $regex: `${query}`, $options: 'i' } }, '', {
     skip,
     limit: Number(limit),
   }).sort({ updatedAt: -1 });
@@ -23,7 +23,7 @@ const getAllByCategory = async (category, page, limit) => {
     petAvatarURL: notice.petAvatarURL,
     price: notice.price,
   }));
-  const resultLength = await getLengthNotices(Notice, { category });
+  const resultLength = await getLengthNotices(Notice, { category, title: { $regex: `${query}`, $options: 'i' } });
 
   return { resultNotices, resultLength };
 };
