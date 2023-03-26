@@ -13,7 +13,7 @@ const getAllByCategory = async (category, page, limit) => {
     limit: Number(limit),
   }).sort({ updatedAt: -1 });
 
-  const result = notices.map(notice => ({
+  const resultNotices = notices.map(notice => ({
     category: notice.category,
     _id: notice._id,
     title: notice.title,
@@ -23,8 +23,16 @@ const getAllByCategory = async (category, page, limit) => {
     petAvatarURL: notice.petAvatarURL,
     price: notice.price,
   }));
+  const resultLength = await getLengthNotices(Notice, { category });
 
-  return result;
+  return { resultNotices, resultLength };
+};
+
+const getLengthNotices = async (model, param) => {
+  const notices = await model.find(param);
+  if (!notices) return null;
+
+  return notices.length;
 };
 
 const getOneById = async id => {
@@ -53,7 +61,7 @@ const addDeleteToFavorite = async (noticeId, userId) => {
   return user.favorite;
 };
 
-const getFavoriteNotices = async _id => {
+const getFavoriteNotices = async (_id, page, limit) => {
   const { favorite } = await User.findById(_id);
   const ids = favorite.map(el => el.toString());
 
@@ -62,16 +70,33 @@ const getFavoriteNotices = async _id => {
   const favoriteNotices = ids.map(id => {
     return notices.find(notice => notice._id.toString() === id);
   });
+  const resultLength = favoriteNotices.length;
 
-  return favoriteNotices.sort(
+  favoriteNotices.sort(
     (firstNotice, secondNotice) => secondNotice.updatedAt - firstNotice.updatedAt
   );
+
+  function favoritePagination(arr, pagPage, pagLimit) {
+    const start = (pagPage - 1) * pagLimit;
+    return arr.splice(start, pagLimit);
+  };
+
+  const result = favoritePagination(favoriteNotices, page, limit);
+
+  return { result, resultLength };
 };
 
-const getNoticesByUser = async id => {
-  const notices = await Notice.find({ owner: id }).sort({ updatedAt: -1 });
+const getNoticesByUser = async (id, page, limit) => {
+  const skip = (page - 1) * limit;
 
-  return notices;
+  const notices = await Notice.find({ owner: id }, '', {
+    skip,
+    limit: Number(limit),
+  }).sort({ updatedAt: -1 });
+
+  const noticesLength = await getLengthNotices(Notice, { owner: id });
+
+  return { notices, noticesLength };
 };
 
 const removeUserNotice = async (userId, noticeId) => {
