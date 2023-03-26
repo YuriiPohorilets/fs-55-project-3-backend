@@ -24,4 +24,7 @@ router.patch('/:noticeId', auth, ctrl.favoriteNotices);
 //================ CREATE NOTICE ================
 router.post('/notice', upload.single('image'), auth, ctrl.addNotice);
 
+//================ GET USER INFO ================
+router.get('/userData', auth, ctrl.getUserData);
+
 module.exports = router;
