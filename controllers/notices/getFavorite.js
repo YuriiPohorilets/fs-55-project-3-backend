@@ -3,8 +3,8 @@ const { getFavoriteNotices } = require('../../services/noticesService');
 
 const getFavorite = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { page, limit } = req.query;
-  const {result, resultLength} = await getFavoriteNotices(_id, page, limit);
+  const { query = '', page, limit } = req.query;
+  const {result, resultLength} = await getFavoriteNotices(_id, query, page, limit);
 
   if (!result) {
     res.status(400).json({
