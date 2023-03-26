@@ -8,10 +8,14 @@ const createNotice = async (body, _id, email, phone, petAvatarURL) => {
 const getAllByCategory = async (category, query, page, limit) => {
   const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ category, title: { $regex: `${query}`, $options: 'i' } }, '', {
-    skip,
-    limit: Number(limit),
-  }).sort({ updatedAt: -1 });
+  const notices = await Notice.find(
+    { category, title: { $regex: `${query}`, $options: 'i' } },
+    '',
+    {
+      skip,
+      limit: Number(limit),
+    }
+  ).sort({ updatedAt: -1 });
 
   const resultNotices = notices.map(notice => ({
     category: notice.category,
@@ -23,7 +27,10 @@ const getAllByCategory = async (category, query, page, limit) => {
     petAvatarURL: notice.petAvatarURL,
     price: notice.price,
   }));
-  const resultLength = await getLengthNotices(Notice, { category, title: { $regex: `${query}`, $options: 'i' } });
+  const resultLength = await getLengthNotices(Notice, {
+    category,
+    title: { $regex: `${query}`, $options: 'i' },
+  });
 
   return { resultNotices, resultLength };
 };
@@ -79,22 +86,29 @@ const getFavoriteNotices = async (_id, page, limit) => {
   function favoritePagination(arr, pagPage, pagLimit) {
     const start = (pagPage - 1) * pagLimit;
     return arr.splice(start, pagLimit);
-  };
+  }
 
   const result = favoritePagination(favoriteNotices, page, limit);
 
   return { result, resultLength };
 };
 
-const getNoticesByUser = async (id, page, limit) => {
+const getNoticesByUser = async (id, query, page, limit) => {
   const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ owner: id }, '', {
-    skip,
-    limit: Number(limit),
-  }).sort({ updatedAt: -1 });
+  const notices = await Notice.find(
+    { owner: id, title: { $regex: `${query}`, $options: 'i' } },
+    '',
+    {
+      skip,
+      limit: Number(limit),
+    }
+  ).sort({ updatedAt: -1 });
 
-  const noticesLength = await getLengthNotices(Notice, { owner: id });
+  const noticesLength = await getLengthNotices(Notice, {
+    owner: id,
+    title: { $regex: `${query}`, $options: 'i' },
+  });
 
   return { notices, noticesLength };
 };

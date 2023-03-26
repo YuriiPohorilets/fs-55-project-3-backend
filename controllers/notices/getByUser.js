@@ -3,8 +3,8 @@ const { getNoticesByUser } = require('../../services/noticesService');
 
 const getByUser = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { page, limit } = req.query;
-  const {notices, noticesLength} = await getNoticesByUser(_id, page, limit);
+  const { query = '', page, limit } = req.query;
+  const {notices, noticesLength} = await getNoticesByUser(_id, query, page, limit);
 
   if (!notices) {
     res.status(400).json({
