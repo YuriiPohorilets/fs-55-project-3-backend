@@ -19,6 +19,7 @@ const petSchema = new Schema({
   },
   photo: {
     type: String,
+    required: [true, 'Field is required'],
   },
   owner: {
     type: Schema.Types.ObjectId,
