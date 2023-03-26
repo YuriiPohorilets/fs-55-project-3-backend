@@ -123,6 +123,14 @@ const removeUserNotice = async (userId, noticeId) => {
   return true;
 };
 
+const getUserFavAndOwnIDs = async userId => {
+  const { favorite } = await User.findById(userId);
+  const own = await Notice.find({ owner: userId });
+  const ownIDs = own.map(notice => notice._id);
+
+  return { favorite, ownIDs };
+};
+
 module.exports = {
   createNotice,
   getAllByCategory,
@@ -131,4 +139,5 @@ module.exports = {
   getFavoriteNotices,
   getNoticesByUser,
   removeUserNotice,
+  getUserFavAndOwnIDs,
 };
