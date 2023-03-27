@@ -18,6 +18,10 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   folder: 'public',
   allowedFormats: ['jpg', 'png'],
+  params: {
+    width: 550,
+    Crop: 'fill',
+  },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
