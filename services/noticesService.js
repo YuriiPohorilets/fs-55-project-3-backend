@@ -70,16 +70,19 @@ const addDeleteToFavorite = async (noticeId, userId) => {
 
 const getFavoriteNotices = async (_id, query, page, limit) => {
   const { favorite } = await User.findById(_id);
+
   const ids = favorite.map(el => el.toString());
 
   const notices = await Notice.find({});
+
+  console.log(notices);
 
   const favoriteNotices = ids.map(id => {
     return notices.find(notice => notice._id.toString() === id);
   });
 
   const fondFavNotices = favoriteNotices.filter(notice => {
-    return notice.title.toLowerCase().includes(`${query.toLowerCase()}`);
+    return notice?.title.toLowerCase().includes(`${query.toLowerCase()}`);
   });
   const resultLength = fondFavNotices.length;
 
