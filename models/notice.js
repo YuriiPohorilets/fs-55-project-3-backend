@@ -28,7 +28,6 @@ const noticeSchema = new Schema(
     },
     petAvatarURL: {
       type: String,
-      // required: [true, 'Pet avatar field is required'],
     },
     category: {
       type: String,
@@ -44,7 +43,6 @@ const noticeSchema = new Schema(
     },
     phone: {
       type: String,
-      // required: [true, 'Phone field is required'],
     },
     comments: {
       type: String,

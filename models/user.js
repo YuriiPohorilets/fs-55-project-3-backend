@@ -19,12 +19,10 @@ const userSchema = new Schema(
     phone: {
       type: String,
       default: null,
-      // required: [true, 'Phone is required'],
     },
     city: {
       type: String,
       default: null,
-      // required: [true, 'Location is required'],
     },
     birthday: {
       type: String,
