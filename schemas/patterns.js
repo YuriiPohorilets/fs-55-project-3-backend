@@ -7,6 +7,7 @@ const locationPattern = /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-я
 
 //================ PETS ================
 const notNumNotSpecChar = /[^0-9$&+,:;=?@#|'<>.^*()%!-]/;
+const notStartByNull = /[^ 0] +/;
 
 module.exports = {
   emailPattern,
@@ -15,4 +16,5 @@ module.exports = {
   phonePattern,
   locationPattern,
   notNumNotSpecChar,
+  notStartByNull,
 };
