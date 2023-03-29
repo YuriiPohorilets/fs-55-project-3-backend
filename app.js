@@ -5,16 +5,14 @@ const path = require('path');
 const connectDb = require('./db/connection');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-const cookieParser = require("cookie-parser");
+const cookieParser = require('cookie-parser');
 
-//================ ROUTES REQUIRE ================
 const authRoutes = require('./routes/api/auth');
 const newsRoutes = require('./routes/api/news');
 const petsRoutes = require('./routes/api/pets');
 const noticesRoutes = require('./routes/api/notices');
 const servicesRoutes = require('./routes/api/services');
 const userPetsRoutes = require('./routes/api/userPets');
-//================ END ROUTES REQUIRE ================
 
 const configPath = path.join(__dirname, '.env');
 require('dotenv').config({
@@ -31,7 +29,6 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(cookieParser());
 
-//================ ROUTES ================
 app.use('/api-docs', swaggerUi.serve);
 app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
@@ -41,7 +38,6 @@ app.use('/api/pets', petsRoutes);
 app.use('/api/notices', noticesRoutes);
 app.use('/api/services', servicesRoutes);
 app.use('/api/user-pets', userPetsRoutes);
-//================ END ROUTES ================
 
 connectDb();
 

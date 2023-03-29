@@ -21,8 +21,6 @@ const login = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: `Email or password is wrong` });
   }
 
-
-  
   const { token, refreshToken } = await generateToken(user._id);
   await User.findByIdAndUpdate(user._id, { token, refreshToken });
 

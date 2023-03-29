@@ -17,8 +17,7 @@ const addNotice = asyncHandler(async (req, res) => {
   let petAvatarURL = '';
   if (req.file) {
     petAvatarURL = req.file.path;
-  };
-  // const { image: petAvatarURL } = req.file ? req.file.path : '';
+  }
 
   const createdNotice = await createNotice(req.body, _id, email, phone, petAvatarURL);
   if (!createdNotice) {

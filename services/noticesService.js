@@ -49,7 +49,6 @@ const getOneById = async id => {
 
 const addDeleteToFavorite = async (noticeId, userId) => {
   const user = await User.findById(userId);
-  // const notice = await Notice.findOne({ _id: noticeId, owner: user.id });
 
   if (!user) return null;
 
@@ -62,7 +61,6 @@ const addDeleteToFavorite = async (noticeId, userId) => {
   } else if (!isNotice) {
     user.favorite.push(noticeId);
     await user.save();
-    // await User.findOneAndUpdate({_id}, {$push: {favorite: [noticeId]}});
   }
 
   return user.favorite;
