@@ -75,8 +75,6 @@ const getFavoriteNotices = async (_id, query, page, limit) => {
 
   const notices = await Notice.find({});
 
-  console.log(notices);
-
   const favoriteNotices = ids.map(id => {
     return notices.find(notice => notice._id.toString() === id);
   });
